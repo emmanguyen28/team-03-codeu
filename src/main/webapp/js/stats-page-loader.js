@@ -9,6 +9,8 @@
 
         const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
         statsContainer.appendChild(messageCountElement);
+
+        const avgMessageLengthElement = buildStatElement('Average message length: ');
       });
     }
 

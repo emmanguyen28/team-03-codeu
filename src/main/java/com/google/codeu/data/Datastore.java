@@ -103,10 +103,31 @@ public class Datastore {
 
 	}
 
-	/** Returns the total number of messages for all users. */
+	/**
+	 * Returns the total number of messages for all users.
+	 */
 	public int getTotalMessageCount() {
 		Query query = new Query("Message");
 		PreparedQuery results = datastore.prepare(query);
 		return results.countEntities(FetchOptions.Builder.withLimit(1000));
+	}
+	
+	/**
+	 * Returns the total length of all messages
+	 */
+	public int getTotalMessageLength() {
+		int totalMsgLength = 0;
+		List<Message> allMessages = getAllMessages();
+		for(Message message : allMessages) {
+			totalMsgLength += message.getText().length();
+		}
+		return totalMsgLength;
+	}
+	
+	/**
+	 * Returns the average length of messages
+	 */
+	public int getAverageMessageLength() {
+		return getTotalMessageLength() / getAllMessages().size();
 	}
 }

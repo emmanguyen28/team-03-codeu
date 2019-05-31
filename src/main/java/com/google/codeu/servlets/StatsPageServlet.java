@@ -32,9 +32,11 @@ public class StatsPageServlet extends HttpServlet {
 		response.setContentType("application/json");
 
 		int messageCount = datastore.getTotalMessageCount();
-
+		int avgMsgLength = datastore.getAverageMessageLength();
+		
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("messageCount", messageCount);
+		jsonObject.addProperty("averageMessageLength", avgMsgLength);
 		response.getOutputStream().println(jsonObject.toString());
 	}
 }
