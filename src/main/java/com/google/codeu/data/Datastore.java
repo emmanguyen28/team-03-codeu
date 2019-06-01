@@ -59,6 +59,7 @@ public class Datastore {
         new Query("Message")
             .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
             .addSort("timestamp", SortDirection.DESCENDING);
+
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
@@ -71,7 +72,7 @@ public class Datastore {
         Message message = new Message(id, user, text, timestamp);
         messages.add(message);
       } catch (Exception e) {
-        System.err.println("Error reading message.");
+        System.err.println("Error reading message.");//wow that's wild I didn't know you could do System.err
         System.err.println(entity.toString());
         e.printStackTrace();
       }
