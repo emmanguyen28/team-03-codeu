@@ -8,9 +8,9 @@
         statsContainer.innerHTML = '';
 
         const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
+        const avgMsgLengthElement = buildStatElement('Average message length: ' + stats.averageMessageLength);
         statsContainer.appendChild(messageCountElement);
-
-        const avgMessageLengthElement = buildStatElement('Average message length: ');
+        statsContainer.appendChild(avgMsgLengthElement);
       });
     }
 
