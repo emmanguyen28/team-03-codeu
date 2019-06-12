@@ -77,10 +77,24 @@ public class MessageServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+    
+    // if text contains image link, parse it
+    String parsedText = parseImageLink(text);
 
-    Message message = new Message(user, text);
+    Message message = new Message(user, parsedText);
     datastore.storeMessage(message);
 
-    response.sendRedirect("/user-page.html?user=" + user);//this goes into the url 
+    response.sendRedirect("/user-page.html?user=" + user);
+  }
+  /**
+   * 
+   * @param imageLink
+   * @return 
+   */
+  public String parseImageLink(String text) {
+	  String regex = "(https?://\\S+\\.(png|jpg))";
+	  String replacement = "<img src=\"$1\" />";
+	  String result = text.replaceAll(regex, replacement);
+	  return result;
   }
 }
