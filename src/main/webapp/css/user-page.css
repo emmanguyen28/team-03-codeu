@@ -52,3 +52,11 @@
 .hidden {
   display: none;
 }
+
+/* To prevent large images from overflowing outside the
+   message-body div */
+.message-body img {
+	display: block;
+	margin-top: 25px;
+	max-width: 100%;
+}
