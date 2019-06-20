@@ -91,13 +91,12 @@ function buildMessageDiv(message) {
 	return messageDiv;
 }
 
-/** */
+/** Replace image links with the img HTML tag*/
 function replaceImageAddressWithHTML(text) {
 	// will possible use this regex instead \b(https?:\/\/\S+(?:png|jpe?g|gif)\S*)\b
 	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
 	const replacement = '<img src="$&" />';
 	const result = text.replace(regex, replacement);
-	console.log(result);
 	return result;
 }
 
