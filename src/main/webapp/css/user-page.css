@@ -53,3 +53,8 @@
 	margin-top: 25px;
 	max-width: 100%;
 }
+
+/* Hides the div */
+.hidden {
+	display: none;
+}

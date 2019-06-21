@@ -45,6 +45,20 @@ function showMessageFormIfViewingSelf() {
 		});
 }
 
+/* Fetches the Blobstore URL (where the image will be stored) then displays the form */
+function fetchBlobstoreUrlAndShowForm() {
+	fetch('/blobstore-upload-url')
+		.then((response) => {
+			return response.text();
+		})
+		.then((imageUploadUrl) => {
+			console.log('imageUploadUrl is: ' + imageUploadUrl);
+			const messageForm = document.getElementById('message-form');
+			messageForm.action = imageUploadUrl;
+			messageForm.classList.remove('hidden');
+		});
+}
+
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
 	const url = '/messages?user=' + parameterUsername;
@@ -97,20 +111,6 @@ function replaceImageAddressWithHTML(text) {
 	const replacement = '<img src="$&" />';
 	const result = text.replace(regex, replacement);
 	return result;
-}
-
-/* Fetches the Blobstore URL (where the image will be stored) then displays the form */
-function fetchBlobstoreUrlAndShowForm() {
-	fetch('/blobstore-upload-url')
-		.then((response) => {
-			return response.text();
-		})
-		.then((imageUploadUrl) => {
-			console.log(imageUploadUrl);
-			const messageForm = document.getElementById('message-form');
-			messageForm.action = imageUploadUrl;
-			messageForm.classList.remove('hidden');
-		});
 }
 
 /** Fetches data and populates the UI of the page. */
