@@ -34,7 +34,7 @@ function buildMessageDiv(message) {
 
 	const bodyDiv = document.createElement('div');
 	bodyDiv.classList.add('message-body');
-	console.log(bodyDiv);
+	// console.log(bodyDiv);
 	bodyDiv.innerHTML = replaceImageAddressWithHTML(message.text);
 	// bodyDiv.appendChild(document.createTextNode(message.text));
 

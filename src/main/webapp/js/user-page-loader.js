@@ -42,6 +42,7 @@ function showMessageFormIfViewingSelf() {
 				loginStatus.username == parameterUsername) {
 				const messageForm = document.getElementById('message-form');
 				messageForm.classList.remove('hidden');
+				fetchBlobstoreUrlAndEnableSubmitButton();
 			}
 		});
 }
@@ -98,6 +99,19 @@ function replaceImageAddressWithHTML(text) {
 	const replacement = '<img src="$&" />';
 	const result = text.replace(regex, replacement);
 	return result;
+}
+
+/* Fetches the Blobstore URL (where the image will be store), once fetched, submit button is enabled */
+function fetchBlobstoreUrlAndEnableSubmitButton() {
+	fetch('/blobstore-upload-url')
+		.then((response) => {
+			return response.text();
+		})
+		.then((imageUploadUrl) => {
+			console.log(imageUploadUrl);
+			const submitMessageButton = document.getElementById('submitMessageButton');
+			submitMessageButton.disabled = false;
+		});
 }
 
 /** Fetches data and populates the UI of the page. */
