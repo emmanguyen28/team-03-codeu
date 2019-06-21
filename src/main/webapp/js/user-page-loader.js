@@ -40,9 +40,7 @@ function showMessageFormIfViewingSelf() {
 		.then((loginStatus) => {
 			if (loginStatus.isLoggedIn &&
 				loginStatus.username == parameterUsername) {
-				const messageForm = document.getElementById('message-form');
-				messageForm.classList.remove('hidden');
-				fetchBlobstoreUrlAndEnableSubmitButton();
+				fetchBlobstoreUrlAndShowForm();
 			}
 		});
 }
@@ -101,16 +99,17 @@ function replaceImageAddressWithHTML(text) {
 	return result;
 }
 
-/* Fetches the Blobstore URL (where the image will be store), once fetched, submit button is enabled */
-function fetchBlobstoreUrlAndEnableSubmitButton() {
+/* Fetches the Blobstore URL (where the image will be stored) then displays the form */
+function fetchBlobstoreUrlAndShowForm() {
 	fetch('/blobstore-upload-url')
 		.then((response) => {
 			return response.text();
 		})
 		.then((imageUploadUrl) => {
 			console.log(imageUploadUrl);
-			const submitMessageButton = document.getElementById('submitMessageButton');
-			submitMessageButton.disabled = false;
+			const messageForm = document.getElementById('message-form');
+			messageForm.action = imageUploadUrl;
+			messageForm.classList.remove('hidden');
 		});
 }
 
