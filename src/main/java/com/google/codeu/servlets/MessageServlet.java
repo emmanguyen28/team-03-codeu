@@ -88,12 +88,9 @@ public class MessageServlet extends HttpServlet {
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrl = getUploadedFileUrl(request, "image");
 		System.out.println(imageUrl);
-
-//		if(imageUrl != null) {
-//			TODO
-//		}
-
-		Message message = new Message(user, text);
+		
+		// if imageUrl is null, it's saved like that. Will be taken care of on the front end
+		Message message = new Message(user, text, imageUrl);
 		datastore.storeMessage(message);
 
 		response.sendRedirect("/user-page.html?user=" + user);

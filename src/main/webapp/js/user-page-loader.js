@@ -61,12 +61,14 @@ function fetchBlobstoreUrlAndShowForm() {
 
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
+	console.log('user-page-loader.js -- fetchMessages');
 	const url = '/messages?user=' + parameterUsername;
 	fetch(url)
 		.then((response) => {
 			return response.json();
 		})
 		.then((messages) => {
+			console.log(messages);
 			const messagesContainer = document.getElementById('message-container');
 			if (messages.length == 0) {
 				messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
@@ -86,6 +88,7 @@ function fetchMessages() {
  * @return {Element}
  */
 function buildMessageDiv(message) {
+	console.log('user-page-loader.js -- buildMessageDiv');
 	const headerDiv = document.createElement('div');
 	headerDiv.classList.add('message-header');
 	headerDiv.appendChild(document.createTextNode(
@@ -96,6 +99,17 @@ function buildMessageDiv(message) {
 	var messageText = message.text;
 	bodyDiv.innerHTML = replaceImageAddressWithHTML(messageText);
 
+	console.log(message.imageUrl);
+	const imageUrl = message.imageUrl;
+	
+	// if message has an image, display it
+	if (imageUrl != null && imageUrl != undefined) {
+		console.log('inside if');
+		const image = document.createElement('img');
+		image.src = imageUrl;
+		bodyDiv.appendChild(image);
+	}
+	
 	const messageDiv = document.createElement('div');
 	messageDiv.classList.add('message-div');
 	messageDiv.appendChild(headerDiv);
