@@ -15,66 +15,14 @@
  */
 
 /* Prevent the page from becoming too wide. */
-body {
-  margin: 0; 
-  background: linear-gradient(white, #ccccff) fixed;
-  font-family: sans-serif;
+h1, h2 {
+  color: green;
+  font: 'lobster', cursive;
+}
+p {
+  padding: 50px; 
 }
 
-nav {
-  background-color: palegreen; 
-  font-size: 18pt; 
-  padding: 10px; 
+general {
+  background-color: aliceblue; 
 }
-
-/* Remove bullet points from navigation bar. */
-nav ul {
-  list-style-type: none;
-  padding-left: 0;
-  color: black; 
-  margin-right: 10px; 
-}
-
-h2 {
-  margin: 0;
-}
-
-
-.nav {
-  text-align: center; 
-}
-
-/* Keep navigation menu on one line. */
-.nav li {
-  display: inline;
-  color: palegreen;
-}
-
-.nav a {
-  display: inline-block;
-  padding: 10px; 
-}
-
-.panel {
-  background-color: white;
-  margin-top: 20px;
-}
-
-.centered {
-  text-align: center;
-}
-
-.padded{
-  padding: 10x;
-}
-
-.rounded {
-  border: thin solid black;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-#intro {
-  display: inline-block;
-}
-
