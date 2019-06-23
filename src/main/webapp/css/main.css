@@ -15,14 +15,37 @@
  */
 
 /* Prevent the page from becoming too wide. */
+
 h1, h2 {
-  color: green;
-  font: 'lobster', cursive;
+  color: #FFDF9E;
 }
 p {
   padding: 50px; 
 }
 
-general {
+ul {
+  list-style-type: none; 
+}
+
+body {
   background-color: aliceblue; 
+}
+
+.panel {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.centered{
+  text-align: center;
+}
+
+.padded {
+  padding: 10px;
+}
+
+.rounded {
+  border: groove blue;
+  border-radius: 10px;
+  overflow: hidden;
 }
