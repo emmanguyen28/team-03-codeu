@@ -102,11 +102,13 @@ function buildMessageDiv(message) {
 	console.log(message.imageUrl);
 	const imageUrl = message.imageUrl;
 	
-	// if message has an image, display it
-	if (imageUrl != null && imageUrl != undefined) {
+	// 1st check checks for null, undefined, empty strings
+	// 2nd check check if string is made up  of only white spaces
+	if (Boolean(imageUrl) && !!imageUrl.trim()) {
 		console.log('inside if');
 		const image = document.createElement('img');
 		image.src = imageUrl;
+		console.log(image);
 		bodyDiv.appendChild(image);
 	}
 	
@@ -122,7 +124,7 @@ function buildMessageDiv(message) {
 function replaceImageAddressWithHTML(text) {
 	// will possible use this regex instead \b(https?:\/\/\S+(?:png|jpe?g|gif)\S*)\b
 	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
-	const replacement = '<img src="$&" />';
+	const replacement = '<a href="$&" target="_blank">$&</a>';
 	const result = text.replace(regex, replacement);
 	return result;
 }
