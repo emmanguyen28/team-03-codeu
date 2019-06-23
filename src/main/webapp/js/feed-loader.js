@@ -19,29 +19,36 @@ function fetchMessages() {
 }
 
 function buildMessageDiv(message) {
-    const usernameDiv = document.createElement('div');
-    usernameDiv.classList.add("left-align");
-    usernameDiv.appendChild(document.createTextNode(message.user));
 
-    const timeDiv = document.createElement('div');
-    timeDiv.classList.add('right-align');
-    timeDiv.appendChild(document.createTextNode(new Date(message.timestamp)));
+    const wrapper = document.createElement('div'); 
+    wrapper.classList.add('card');
+    wrapper.style = 'width: 70rem'; 
 
-    const headerDiv = document.createElement('div');
-    headerDiv.classList.add('message-header');
-    headerDiv.appendChild(usernameDiv);
-    headerDiv.appendChild(timeDiv);
+    const inner_wrapper = document.createElement('div'); 
+    inner_wrapper.classList.add('card-body'); 
+    wrapper.appendChild(inner_wrapper); 
 
-    const bodyDiv = document.createElement('div');
-    bodyDiv.classList.add('message-body');
-    bodyDiv.appendChild(document.createTextNode(message.text));
+    const card_title = document.createElement('h4');
+    card_title.classList.add('card-title'); 
+    card_title.appendChild(document.createTextNode(message.user)); 
+    inner_wrapper.appendChild(card_title); 
 
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add("message-div");
-    messageDiv.appendChild(headerDiv);
-    messageDiv.appendChild(bodyDiv);
+    const card_list = document.createElement('ul');
+    card_list.classList.add('list-group');
+    card_list.classList.add('list-group-flush'); 
+    wrapper.appendChild(card_list); 
 
-    return messageDiv;
+    const time_li = document.createElement('li'); 
+    time_li.classList.add('list-group-item'); 
+    time_li.appendChild(document.createTextNode(new Date(message.timestamp))); 
+    card_list.appendChild(time_li);
+
+    const message_li = document.createElement('li'); 
+    message_li.classList.add('list-group-item'); 
+    message_li.appendChild(document.createTextNode(message.text)); 
+    card_list.appendChild(message_li); 
+
+    return wrapper;
 }
 
 

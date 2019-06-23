@@ -20,6 +20,11 @@ h1, h2 {
   color: rgb(225, 150, 0);
   text-align: center; 
 }
+
+h4 {
+  color: rgb(250, 117, 0);
+}
+
 p {
   padding: 50px; 
 }
@@ -70,4 +75,18 @@ body {
   text-align: center;
   padding-bottom: 15px; 
   word-break: break-all; 
+}
+
+.card {
+  margin: 0 auto; 
+  float: none;
+}
+
+#feed-content {
+  text-align: center; 
+}
+
+#feed-content ul li {
+  word-break: break-all; 
+  text-align: center;
 }
