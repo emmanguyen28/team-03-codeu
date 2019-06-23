@@ -17,7 +17,7 @@
 /* Prevent the page from becoming too wide. */
 
 h1, h2 {
-  color: #FFDF9E;
+  color: rgb(225, 150, 0);
 }
 p {
   padding: 50px; 
@@ -48,4 +48,10 @@ body {
   border: groove blue;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.card-container {
+  padding-right: 70px;
+  padding-left: 50px; 
+  display: inline-block; 
 }
