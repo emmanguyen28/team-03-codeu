@@ -49,6 +49,7 @@ function buildMessageDiv(message) {
     card_list.appendChild(message_li); 
 
     return wrapper;
+}   
 
 
 /** Replace image links with the img HTML tag*/
