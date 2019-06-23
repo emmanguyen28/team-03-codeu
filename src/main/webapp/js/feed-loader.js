@@ -1,21 +1,21 @@
 // fetch messages and add them to the page 
 // by default, fetch uses GET 
 function fetchMessages() {
-    const url = '/feed';
-    fetch(url).then((response) => {
-        return response.json(); // parse the returned json  
-    }).then((messages) => {
-        const messageContainer = document.getElementById('message-container');
-        if (messages.length == 0) {
-            messageContainer.innerHTML = '<p>There are no posts yet.</p>';
-        } else {
-            messageContainer.innerHTML = '';
-        }
-        messages.forEach((message) => {
-            const messageDiv = buildMessageDiv(message);
-            messageContainer.appendChild(messageDiv);
-        });
-    });
+	const url = '/feed';
+	fetch(url).then((response) => {
+		return response.json(); // parse the returned json  
+	}).then((messages) => {
+		const messageContainer = document.getElementById('message-container');
+		if (messages.length == 0) {
+			messageContainer.innerHTML = '<p>There are no posts yet.</p>';
+		} else {
+			messageContainer.innerHTML = '';
+		}
+		messages.forEach((message) => {
+			const messageDiv = buildMessageDiv(message);
+			messageContainer.appendChild(messageDiv);
+		});
+	});
 }
 
 function buildMessageDiv(message) {
@@ -49,10 +49,19 @@ function buildMessageDiv(message) {
     card_list.appendChild(message_li); 
 
     return wrapper;
+
+
+/** Replace image links with the img HTML tag*/
+function replaceImageAddressWithAnchorTag(text) {
+	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
+	const replacement = '<a href="$&" target="_blank">$&</a>';
+	const result = text.replace(regex, replacement);
+	console.log(result);
+	return result;
 }
 
 
 // fetch data and populate the UI of the page 
 function buildUI() {
-    fetchMessages();
+	fetchMessages();
 }
