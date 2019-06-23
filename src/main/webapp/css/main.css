@@ -18,6 +18,7 @@
 
 h1, h2 {
   color: rgb(225, 150, 0);
+  text-align: center; 
 }
 p {
   padding: 50px; 
@@ -54,4 +55,19 @@ body {
   padding-right: 70px;
   padding-left: 50px; 
   display: inline-block; 
+}
+
+#content {
+  text-align: center; 
+}
+
+#list {
+  display: inline-table; 
+  margin: auto; 
+}
+
+#list li {
+  text-align: center;
+  padding-bottom: 15px; 
+  word-break: break-all; 
 }
