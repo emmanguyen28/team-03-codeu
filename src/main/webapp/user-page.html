@@ -13,6 +13,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -25,10 +29,22 @@ limitations under the License.
   </head>
   <body onload="buildUI();">
     <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-      </ul>
+      <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">SportsPal</a>
+        </div>
+        <ul class="nav navbar-nav" id="navigation">
+          <li><a href="/">Home</a></li>
+          <li><a href="/aboutus.html">About Our Team</a></li>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/feed.html">Feed</a></li>
+          <li><a href="/stats.html">Stats</a></li>
+          <li><a href="/user-page.html">User Page</a></li>
+        </ul>
+      </div>
+    </nav>
+      
     </nav>
     <h1 id="page-title">User Page</h1>
 
@@ -41,21 +57,23 @@ limitations under the License.
 	
 	OR
 	
-    <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
-      <p>Enter a new message:</p>
-      <br/>
-      <textarea name="text" id="message-input"></textarea>
-      <br/>
-      <div>
-        <p>Upload image</p>
-        <input type="file" name="image">
-      </div>
+
+  <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
+    <p style="padding-left: 180px;">Enter a new message:</p>
+    <br />
+    <textarea name="text" id="message-input"></textarea>
+    <br />
+    <div class="container centered">
+      <p>Upload image</p>
+      <input id="file-input" type="file" name="image">
       <br>
       <input id="submitMessageButton" type="submit" value="Submit">
-    </form>
-    <hr/>
+    </div>
+  </form>
+  <hr />
 
-    <div id="message-container">Loading...</div>
+  <div id="message-container">Loading...</div>
 
-  </body>
+</body>
+
 </html>
