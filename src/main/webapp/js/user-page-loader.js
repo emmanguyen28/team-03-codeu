@@ -40,20 +40,35 @@ function showMessageFormIfViewingSelf() {
 		.then((loginStatus) => {
 			if (loginStatus.isLoggedIn &&
 				loginStatus.username == parameterUsername) {
-				const messageForm = document.getElementById('message-form');
-				messageForm.classList.remove('hidden');
+				fetchBlobstoreUrlAndShowForm();
 			}
+		});
+}
+
+/* Fetches the Blobstore URL (where the image will be stored) then displays the form */
+function fetchBlobstoreUrlAndShowForm() {
+	fetch('/blobstore-upload-url')
+		.then((response) => {
+			return response.text();
+		})
+		.then((imageUploadUrl) => {
+			console.log('imageUploadUrl is: ' + imageUploadUrl);
+			const messageForm = document.getElementById('message-form');
+			messageForm.action = imageUploadUrl;
+			messageForm.classList.remove('hidden');
 		});
 }
 
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
+	console.log('user-page-loader.js -- fetchMessages');
 	const url = '/messages?user=' + parameterUsername;
 	fetch(url)
 		.then((response) => {
 			return response.json();
 		})
 		.then((messages) => {
+			console.log(messages);
 			const messagesContainer = document.getElementById('message-container');
 			if (messages.length == 0) {
 				messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
@@ -73,6 +88,7 @@ function fetchMessages() {
  * @return {Element}
  */
 function buildMessageDiv(message) {
+	console.log('user-page-loader.js -- buildMessageDiv');
 	const headerDiv = document.createElement('div');
 	headerDiv.classList.add('message-header');
 	headerDiv.appendChild(document.createTextNode(
@@ -83,6 +99,19 @@ function buildMessageDiv(message) {
 	var messageText = message.text;
 	bodyDiv.innerHTML = replaceImageAddressWithHTML(messageText);
 
+	console.log(message.imageUrl);
+	const imageUrl = message.imageUrl;
+	
+	// 1st check checks for null, undefined, empty strings
+	// 2nd check check if string is made up  of only white spaces
+	if (Boolean(imageUrl) && !!imageUrl.trim()) {
+		console.log('inside if');
+		const image = document.createElement('img');
+		image.src = imageUrl;
+		console.log(image);
+		bodyDiv.appendChild(image);
+	}
+	
 	const messageDiv = document.createElement('div');
 	messageDiv.classList.add('message-div');
 	messageDiv.appendChild(headerDiv);
@@ -91,13 +120,12 @@ function buildMessageDiv(message) {
 	return messageDiv;
 }
 
-/** */
+/** Replace image links with the img HTML tag*/
 function replaceImageAddressWithHTML(text) {
 	// will possible use this regex instead \b(https?:\/\/\S+(?:png|jpe?g|gif)\S*)\b
 	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
-	const replacement = '<img src="$&" />';
+	const replacement = '<a href="$&" target="_blank">$&</a>';
 	const result = text.replace(regex, replacement);
-	console.log(result);
 	return result;
 }
 

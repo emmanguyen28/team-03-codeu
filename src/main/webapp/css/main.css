@@ -15,14 +15,78 @@
  */
 
 /* Prevent the page from becoming too wide. */
+
 h1, h2 {
-  color: green;
-  font: 'lobster', cursive;
+  color: rgb(225, 150, 0);
+  text-align: center; 
 }
+
+h4 {
+  color: rgb(250, 117, 0);
+}
+
 p {
   padding: 50px; 
 }
 
-general {
+ul {
+  list-style-type: none; 
+}
+
+body {
   background-color: aliceblue; 
+}
+
+.panel {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.centered{
+  text-align: center;
+}
+
+.padded {
+  padding: 10px;
+}
+
+.rounded {
+  border: groove blue;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-container {
+  padding-right: 70px;
+  padding-left: 50px; 
+  display: inline-block; 
+}
+
+#content {
+  text-align: center; 
+}
+
+#list {
+  display: inline-table; 
+  margin: auto; 
+}
+
+#list li {
+  text-align: center;
+  padding-bottom: 15px; 
+  word-break: break-all; 
+}
+
+.card {
+  margin: 0 auto; 
+  float: none;
+}
+
+#feed-content {
+  text-align: center; 
+}
+
+#feed-content ul li {
+  word-break: break-all; 
+  text-align: center;
 }
