@@ -152,7 +152,6 @@ function buildMessageDiv(message) {
 
 /** Replace image links with the img HTML tag*/
 function replaceImageAddressWithHTML(text) {
-	// will possible use this regex instead \b(https?:\/\/\S+(?:png|jpe?g|gif)\S*)\b
 	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
 	const replacement = '<a href="$&" target="_blank">$&</a>';
 	const result = text.replace(regex, replacement);
