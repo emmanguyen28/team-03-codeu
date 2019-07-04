@@ -160,7 +160,7 @@ function replaceImageAddressWithHTML(text) {
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
-	setPageTitle();
+	//setPageTitle();
 	showMessageFormIfViewingSelf();
 	fetchMessages();
 }
