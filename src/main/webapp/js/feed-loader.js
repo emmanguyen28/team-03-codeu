@@ -45,9 +45,11 @@ function buildMessageDiv(message) {
 
 	const message_li = document.createElement('li');
 	message_li.classList.add('list-group-item');
-	var messageText = convertImageAddressToAnchorTag(message.text);
+
+	const text_div = document.createElement('div');
+	text_div.innerHTML = convertImageAddressToAnchorTag(message.text);
 	
-	message_li.innerHTML = messageText;
+	message_li.appendChild(text_div);
 
 	const imageUrl = message.imageUrl;
 	
