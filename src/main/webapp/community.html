@@ -24,44 +24,37 @@
           const userListItem = buildUserListItem(user);
           list.appendChild(userListItem);
         });
-      });
-    }
+      }
 
-    /**
-     * Builds a list element that contains a link to a user page, e.g.
-     * <li><a href="/user-page.html?user=test@example.com">test@example.com</a></li>
-     */
-    function buildUserListItem(user) {
-      const userLink = document.createElement('a');
-      userLink.setAttribute('href', '/user-page.html?user=' + user);
-      userLink.appendChild(document.createTextNode(user));
-      const userListItem = document.createElement('li');
-      userListItem.className = "list-group-item mw-40";
-      userListItem.appendChild(userLink);
-      return userListItem;
-    }
+      /**
+       * Builds a list element that contains a link to a user page, e.g.
+       * <li><a href="/user-page.html?user=test@example.com">test@example.com</a></li>
+       */
+      function buildUserListItem(user){
+        const userLink = document.createElement('a');
+        userLink.setAttribute('href', '/user-page.html?user=' + user);
+        userLink.appendChild(document.createTextNode(user));
+        const userListItem = document.createElement('li');
+        userListItem.appendChild(userLink);
+        return userListItem;
+      }
 
-    /** Fetches data and populates the UI of the page. */
-    function buildUI() {
-      fetchUserList();
-    }
-  </script>
-</head>
-
-<body onload="buildUI();">
-  <div class="container-fluid">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">SportsPal</a>
-        </div>
-        <ul class="nav navbar-nav" id="navigation">
-          <li><a href="/aboutus.html">About Our Team</a></li>
-          <li><a href="/community.html">Community</a></li>
-          <li><a href="/feed.html">Feed</a></li>
-          <li><a href="/stats.html">Stats</a></li>
-        </ul>
-      </div>
+      /** Fetches data and populates the UI of the page. */
+      function buildUI(){
+       fetchUserList();
+      }
+    </script>
+  </head>
+  <body onload="buildUI()">
+  	<nav>
+      <ul id="navigation">
+        <li><a href="/">Home</a></li>
+        <li><a href="/aboutus.html">About Our Team</a></li>
+        <li><a href="/community.html">Community</a></li>
+        <li><a href="/feed.html">Feed</a></li>
+        <li><a href="/stats.html">Stats</a></li>
+        <li><a href="/user-page.html">User Page</a></li>
+      </ul>
     </nav>
   </div>
   <div>
