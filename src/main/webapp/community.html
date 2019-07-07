@@ -1,14 +1,14 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Community Page</title>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script>
 
     /** Fetches users and adds them to the page. */
@@ -24,7 +24,7 @@
           const userListItem = buildUserListItem(user);
           list.appendChild(userListItem);
         });
-      }
+      })};
 
       /**
        * Builds a list element that contains a link to a user page, e.g.
@@ -40,9 +40,9 @@
       }
 
       /** Fetches data and populates the UI of the page. */
-      function buildUI(){
-       fetchUserList();
-      }
+    function buildUI(){
+      fetchUserList();
+    }
     </script>
   </head>
   <body onload="buildUI()">
@@ -56,7 +56,7 @@
         <li><a href="/user-page.html">User Page</a></li>
       </ul>
     </nav>
-  </div>
+  
   <div>
     <h1>Community Page</h1>
     <div id="content">
