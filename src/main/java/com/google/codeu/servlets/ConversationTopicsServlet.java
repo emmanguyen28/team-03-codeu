@@ -1,6 +1,7 @@
 package com.google.codeu.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.ConversationTopic;
 import com.google.codeu.data.Datastore;
+import com.google.gson.Gson;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -35,7 +37,13 @@ public class ConversationTopicsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("This will be a list of conversation topics in json format");
-        response.getOutputStream().println("PLEASE WORK");
+        response.setContentType("application/json");
+
+        List<ConversationTopic> conversationTopics = datastore.getAllConversationTopics();
+        Gson gson = new Gson();
+        String json = gson.toJson(conversationTopics);
+        
+        response.getOutputStream().println(json);
     }
 
     /** Stores a new {@link Message}. */
@@ -52,5 +60,6 @@ public class ConversationTopicsServlet extends HttpServlet {
         System.out.println(conversationTopic.getId());
         datastore.storeConversationTopic(conversationTopic);
         // redirect to that conversation topic we just created
+        response.sendRedirect("conversation-topics.html");
     }
 }

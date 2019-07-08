@@ -3,8 +3,10 @@
 function fetchMessages() {
 	const url = '/feed';
 	fetch(url).then((response) => {
+		console.log(response);
 		return response.json(); // parse the returned json  
 	}).then((messages) => {
+		console.log(messages);
 		const messageContainer = document.getElementById('message-container');
 		if (messages.length == 0) {
 			messageContainer.innerHTML = '<p>There are no posts yet.</p>';

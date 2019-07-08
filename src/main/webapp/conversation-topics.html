@@ -4,13 +4,15 @@
 <head>
 	<title>Message Feed</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/conversation-topic.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="/js/navigation-loader.js"></script>
+	<script src="/js/conversation-topics.js"></script>
 </head>
 
-<body onload="addLoginOrLogoutLinkToNavigation()">
+<body onload="addLoginOrLogoutLinkToNavigation(); buildUI()">
 	<div class="container-fluid">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -27,7 +29,11 @@
 			</div>
 		</nav>
 
-		<div id="create-conversation-topic-div">
+		<div id="sign-in-to-create-chatroom">
+			<p>sign in to create a new conversation topic</p>
+		</div>
+
+		<div id="create-conversation-topic-div" class="hidden">
 			<form action="/conversation-topics" method="POST" id="create-conversation-topic-form">
 				<label for="conversation-topic-title-input">Create a new topic</label>
 				<input name="conversationTopicTitle" type="text" id="conversation-topic-title-input"
@@ -35,9 +41,9 @@
 				<button id="createConversationTopicButton" type="submit" value="Submit">Create</button>
 			</form>
 
-			<div id="conversation-topic-list">
-				List of existing conversation topics
-			</div>
+			<br>
+		</div>
+		<div id="conversation-topics-container">
 		</div>
 	</div>
 </body>
