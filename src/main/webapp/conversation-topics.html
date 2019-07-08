@@ -27,7 +27,18 @@
 			</div>
 		</nav>
 
-		These are the Conversation Topics
+		<div id="create-conversation-topic-div">
+			<form action="/conversation-topics" method="POST" id="create-conversation-topic-form">
+				<label for="conversation-topic-title-input">Create a new topic</label>
+				<input name="conversationTopicTitle" type="text" id="conversation-topic-title-input"
+					placeholder="title">
+				<button id="createConversationTopicButton" type="submit" value="Submit">Create</button>
+			</form>
+
+			<div id="conversation-topic-list">
+				List of existing conversation topics
+			</div>
+		</div>
 	</div>
 </body>
 

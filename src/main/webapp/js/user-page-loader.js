@@ -88,37 +88,7 @@ function fetchMessages() {
  * @return {Element}
  */
 function buildMessageDiv(message) {
-	// console.log('user-page-loader.js -- buildMessageDiv');
-	// const headerDiv = document.createElement('div');
-	// headerDiv.classList.add('message-header');
-	// headerDiv.appendChild(document.createTextNode(
-	// message.user + ' - ' + new Date(message.timestamp)));
-
-	// const bodyDiv = document.createElement('div');
-	// bodyDiv.classList.add('message-body');
-	// var messageText = message.text;
-	// bodyDiv.innerHTML = replaceImageAddressWithHTML(messageText);
-
-	// console.log(message.imageUrl);
-	// const imageUrl = message.imageUrl;
 	
-	// // 1st check checks for null, undefined, empty strings
-	// // 2nd check check if string is made up  of only white spaces
-	// if (Boolean(imageUrl) && !!imageUrl.trim()) {
-	// 	console.log('inside if');
-	// 	const image = document.createElement('img');
-	// 	image.src = imageUrl;
-	// 	console.log(image);
-	// 	bodyDiv.appendChild(image);
-	// }
-	
-	// const messageDiv = document.createElement('div');
-	// messageDiv.classList.add('message-div');
-	// messageDiv.appendChild(headerDiv);
-	// messageDiv.appendChild(bodyDiv);
-
-	// return messageDiv;
-
 	const wrapper = document.createElement('div'); 
     wrapper.classList.add('card');
     wrapper.style = 'width: 70rem'; 
