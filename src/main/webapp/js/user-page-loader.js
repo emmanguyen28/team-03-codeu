@@ -166,10 +166,7 @@ function fetchAboutMe(){
 	fetch(url).then((response) => {
 	  return response.text();
 	}).then((aboutMe) => {
-	  const aboutMeContainer = document.getElementById('about-me-container');
-	  if(aboutMe == ''){
-		aboutMe = 'This user has not entered any information yet.';
-	  }
+	  const aboutMeContainer = document.getElementById('about-me-container');	  
 	  
 	  aboutMeContainer.innerHTML = aboutMe;
   
