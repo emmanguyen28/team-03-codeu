@@ -38,9 +38,12 @@ function showMessageFormIfViewingSelf() {
 			return response.json();
 		})
 		.then((loginStatus) => {
+			document.getElementById('about-me-form').classList.remove('hidden');
 			if (loginStatus.isLoggedIn &&
 				loginStatus.username == parameterUsername) {
 				fetchBlobstoreUrlAndShowForm();
+				
+
 			}
 		});
 }
@@ -157,10 +160,25 @@ function replaceImageAddressWithHTML(text) {
 	const result = text.replace(regex, replacement);
 	return result;
 }
-
+/** fetches about me  */
+function fetchAboutMe(){
+	const url = '/about?user=' + parameterUsername;
+	fetch(url).then((response) => {
+	  return response.text();
+	}).then((aboutMe) => {
+	  const aboutMeContainer = document.getElementById('about-me-container');
+	  if(aboutMe == ''){
+		aboutMe = 'This user has not entered any information yet.';
+	  }
+	  
+	  aboutMeContainer.innerHTML = aboutMe;
+  
+	});
+  }
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
 	//setPageTitle();
 	showMessageFormIfViewingSelf();
 	fetchMessages();
+	fetchAboutMe();
 }
