@@ -57,6 +57,8 @@ public class Datastore {
 		userEntity.setProperty("aboutMe", user.getAboutMe());
 		datastore.put(userEntity);
 	   }
+
+	
 	   
 	   /**
 		* Returns the User owned by the email address, or
