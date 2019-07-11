@@ -55,6 +55,10 @@ function buildConversationTopicDiv(conversationTopic) {
     const conversationTopicDiv = document.createElement('div');
     conversationTopicDiv.classList.add('conversation-topic-div');
 
+    const aTag = document.createElement('a');
+    aTag.setAttribute('href', '/single-conversation-topic.html?id=' + conversationTopic.id);
+    // aTag.setAttribute('href', window.location.href + '?id=' + conversationTopic.id);
+
     console.log(conversationTopic.title);
     const title = document.createElement('div');
     title.classList.add('conversation-topic-title')
@@ -75,21 +79,12 @@ function buildConversationTopicDiv(conversationTopic) {
     conversationTopicHeader.appendChild(title);
     conversationTopicHeader.appendChild(timestampDiv);
 
-    conversationTopicDiv.appendChild(conversationTopicHeader);
-    conversationTopicDiv.appendChild(membersListDiv);
+    aTag.appendChild(conversationTopicHeader);
+    aTag.appendChild(membersListDiv);
 
-    console.log(window.location);
-    conversationTopicDiv.addEventListener("click", function() {
-      navigateToChatroom(conversationTopic.id);
-    });
+    conversationTopicDiv.appendChild(aTag);
 
     return conversationTopicDiv;
-}
-
-function navigateToChatroom(id) {
-  console.log('goign to ' + id);
-  const currentLocation = window.location.href;
-  window.location.href = currentLocation + `/${id}`;
 }
 
 function formatTime(timeCreated) {

@@ -8,16 +8,24 @@
 }
 
 .conversation-topic-header h3 {
-    margin: 0;
+  margin: 0;
 }
 
 .conversation-topic-title {
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .conversation-topic-subtitle {
-    font-size: 12px;
-    margin-left: 10px;
-    color: grey;
+  font-size: 12px;
+  margin-left: 10px;
+  color: grey;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
 }

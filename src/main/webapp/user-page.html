@@ -13,11 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
 <!DOCTYPE html>
 <html>
 
@@ -26,10 +21,15 @@ limitations under the License.
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/user-page.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="/js/user-page-loader.js"></script>
+  <script src="/js/navigation-loader.js"></script>
 </head>
 
 <body onload="buildUI();" onload="addLoginOrLogoutLinkToNavigation();">
+  
   <nav>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -42,13 +42,12 @@ limitations under the License.
           <li><a href="/community.html">Community</a></li>
           <li><a href="/feed.html">Feed</a></li>
           <li><a href="/stats.html">Stats</a></li>
-          <li><a href="/user-page.html">User Page</a></li>
           <li><a href="/conversation-topics.html">Conversation Topics</a></li>
         </ul>
       </div>
     </nav>
-
   </nav>
+
   <h1 id="page-title">User Page</h1>
   <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
     <p style="padding-left: 180px;">Enter a new message:</p>
