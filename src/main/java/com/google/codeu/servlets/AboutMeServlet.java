@@ -71,12 +71,12 @@ public class AboutMeServlet extends HttpServlet {
     String name = "FakeName"; 
     String username = "FakeUsername";
     String profile_pic = "Fake";
-    String [] interests = ["muscles","cardio"]; 
+    String[] interests = {"muscles","cardio"}; 
 
     //User user = new User(userEmail, aboutMe);
     //datastore.storeUser(user);
 
-    Profile newProfile = new Profile(name, username, profile_pic_URL, String [] interests);
+    Profile newProfile = new Profile(name, username, profile_pic_URL, interests);
     ofy().save().entity(newProfile).now(); //save it in data store 
 
     response.sendRedirect("/user-page.html?user=" + userEmail);

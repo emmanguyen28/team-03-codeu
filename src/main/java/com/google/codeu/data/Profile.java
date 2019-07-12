@@ -16,7 +16,7 @@ public class Profile {
     @Id UUID id;
     private String [] interests; 
 
-    public Profile(String name, String username, String profile_pic_URL, String [] interests) {
+    public Profile() {
         this(UUID.randomUUID(), name, username, profile_pic_URL,interests); 
 
     }
