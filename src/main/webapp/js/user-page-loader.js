@@ -170,7 +170,7 @@ function fetchAboutMe(){
 
 		const nameContainer = document.getElementById('name-container');
 		
-		if (new_name.length == 0 || (new_name == null)) {
+		if (new_name.length == 0) {
 			nameContainer.innerHTML = 'Please enter name ';
 		} else{
 
