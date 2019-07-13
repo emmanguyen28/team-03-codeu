@@ -43,6 +43,8 @@ public class AboutMeServlet extends HttpServlet {
         response.setContentType("text/html");
 
         String user_email = request.getParameter("user");
+        String user = request.getParameter("user");
+
 
         
         if ( user_email == null || user_email.equals("") || user == null || user.equals("") ) {
