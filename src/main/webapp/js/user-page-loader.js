@@ -171,7 +171,7 @@ function fetchAboutMe(){
 		console.log(new_name)
 	  	const nameContainer = document.getElementById('name-container');	  
 	  
-	  	nameContainer.innerHTML = new_name;
+	  	nameContainer.innerHTML = new_name.name;
   
 	});
   }
