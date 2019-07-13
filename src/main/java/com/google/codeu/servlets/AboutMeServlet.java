@@ -44,17 +44,16 @@ public class AboutMeServlet extends HttpServlet {
 
         String user_email = request.getParameter("user");
 
-        if(user_email == null || user_email.equals("")) {
-          // Request is invalid, return empty response
-          return;
+        
+        if (user == null || user.equals("") || user_email == null || user_email.equals("")) {
+          // Request is invalid, return empty array
+          response.getWriter().println("[]");
+          return;// stop
         }
 
         Profile userData = datastore.getUser(user_email);
 
-        if(userData == null || userData.getName() == null) {
-          response.getOutputStream().println("NULL");
-          return;
-        }
+        
 
         Gson gson = new Gson();
 		    String json = gson.toJson(userData);
