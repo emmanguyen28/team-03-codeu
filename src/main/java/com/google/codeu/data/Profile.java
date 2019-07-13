@@ -3,22 +3,20 @@ package com.google.codeu.data;
 
 import java.util.UUID;
 
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
+// import com.googlecode.objectify.annotation.Entity;
+// import com.googlecode.objectify.annotation.Id;
+// import com.googlecode.objectify.annotation.Index;
 
-@Entity
 public class Profile {
 
     private String name; 
     private String username;
     private String profile_pic;
-    @Id UUID id;
+    UUID id;
     private String [] interests; 
 
-    public Profile() {
+    public Profile(String name, String username, String profile_pic_URL, String [] interests) {
         this(UUID.randomUUID(), name, username, profile_pic_URL,interests); 
-
     }
 
 	public Profile(UUID id, String name, String username, String profile_pic_URL, String [] interests) {

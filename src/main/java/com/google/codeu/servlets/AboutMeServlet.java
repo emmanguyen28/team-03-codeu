@@ -11,9 +11,11 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.User;
+import com.google.codeu.data.Profile;
+
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import static com.googlecode.objectify.ObjectifyService.ofy;
+// import static com.googlecode.objectify.ObjectifyService.ofy;
 
 
 /**
@@ -51,6 +53,8 @@ public class AboutMeServlet extends HttpServlet {
       return;
     }
 
+		//response.getWriter().println("Hello world");
+
     response.getOutputStream().println(userData.getAboutMe());
   }
 
@@ -73,11 +77,11 @@ public class AboutMeServlet extends HttpServlet {
     String profile_pic = "Fake";
     String[] interests = {"muscles","cardio"}; 
 
-    //User user = new User(userEmail, aboutMe);
-    //datastore.storeUser(user);
+    User user = new User(userEmail, aboutMe);
+    datastore.storeUser(user);
 
-    Profile newProfile = new Profile(name, username, profile_pic_URL, interests);
-    ofy().save().entity(newProfile).now(); //save it in data store 
+    Profile newProfile = new Profile(name, username, profile_pic, interests);
+    //ofy().save().entity(newProfile).now(); //save it in data store 
 
     response.sendRedirect("/user-page.html?user=" + userEmail);
   }
