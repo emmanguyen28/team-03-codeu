@@ -165,7 +165,7 @@ function fetchAboutMe(){
 	const url = '/about?user=' + parameterUsername;
 	fetch(url).
 		then((response) => {
-	  return response.text();
+	  return response.json();
 	}).then((new_name) => {
 
 		console.log(new_name)

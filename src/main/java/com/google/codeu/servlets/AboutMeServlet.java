@@ -15,6 +15,8 @@ import com.google.codeu.data.Profile;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
+import com.google.gson.Gson;
+
 // import static com.googlecode.objectify.ObjectifyService.ofy;
 
 
@@ -54,7 +56,10 @@ public class AboutMeServlet extends HttpServlet {
           return;
         }
 
-        response.getOutputStream().println(userData.getName());
+        Gson gson = new Gson();
+		    String json = gson.toJson(userData);
+
+        response.getOutputStream().println(json);
 
         // String name = "FakeName"; 
         // String username = "FakeUsername";
@@ -84,7 +89,9 @@ public class AboutMeServlet extends HttpServlet {
 
     String userEmail = userService.getCurrentUser().getEmail();
 
-    String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ;    
+    String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
+    String username =  Jsoup.clean(request.getParameter("user-username"), Whitelist.none()) ; 
+
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
 

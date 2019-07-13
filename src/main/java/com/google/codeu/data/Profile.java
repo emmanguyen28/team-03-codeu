@@ -24,6 +24,11 @@ public class Profile {
         this(UUID.randomUUID(), name, null, null,null, email);         
     }
 
+    public Profile(String name, String username, String email){
+        this(UUID.randomUUID(), name, username, null,null, email);         
+    }
+
+
 	public Profile(UUID id, String name, String username, String profile_pic_URL, String interests, String email) {
         this.id = id;
         this.name = name; 
