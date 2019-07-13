@@ -169,16 +169,20 @@ function fetchAboutMe(){
 	}).then((new_name) => {
 
 		const nameContainer = document.getElementById('name-container');
-		
-		if (new_name.length == 0) {
-			nameContainer.innerHTML = 'Please enter name ';
+		if (new_name){
+			if (new_name.length == 0) {
+				nameContainer.innerHTML = 'Please enter name ';
+			} else{
+	
+				console.log(new_name);
+		  
+				  nameContainer.innerHTML = new_name.name;
+			}
+	
 		} else{
-
-			console.log(new_name);
-	  
-	  		nameContainer.innerHTML = new_name.name;
+			nameContainer.innerHTML = 'Please enter name ';
 		}
-
+		
 		
   
 	});
