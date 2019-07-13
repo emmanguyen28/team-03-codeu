@@ -28,6 +28,8 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
 
+	
+
 	<dependencies>
 
 		<dependency>
@@ -61,11 +63,7 @@
 			<version>0.80.0-beta</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-language</artifactId>
-			<version>1.55.0</version>
-		</dependency>
+	
 		
 		
 
