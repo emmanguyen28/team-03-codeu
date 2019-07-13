@@ -49,7 +49,9 @@ public class AboutMeServlet extends HttpServlet {
         
         if ( user_email == null || user_email.equals("") || user == null || user.equals("") ) {
           // Request is invalid, return empty array
-          response.getWriter().println("[]");
+          Gson gson = new Gson();
+		      String json = gson.toJson([]);
+          response.getWriter().println(json);
           return;// stop
         }
 
