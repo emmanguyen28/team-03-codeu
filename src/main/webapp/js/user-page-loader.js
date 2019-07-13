@@ -171,10 +171,10 @@ function fetchAboutMe(){
 		const nameContainer = document.getElementById('name-container');	  
 
 		if (new_name.length == 0) {
-			nameContainer.innerHTML = '<p>Please enter name .</p>';
+			nameContainer.innerHTML = 'Please enter name ';
 		} else{
 
-			console.log(new_name)
+			console.log(new_name);
 	  
 	  		nameContainer.innerHTML = new_name.name;
 		}
