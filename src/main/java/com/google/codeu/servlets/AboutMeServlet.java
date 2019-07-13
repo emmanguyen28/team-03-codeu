@@ -38,50 +38,60 @@ public class AboutMeServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
-    response.setContentType("text/html");
+        response.setContentType("text/html");
 
-    String user = request.getParameter("user");
+        String user_email = request.getParameter("user");
 
-    if(user == null || user.equals("")) {
-      // Request is invalid, return empty response
-      return;
-    }
+        if(user_email == null || user_email.equals("")) {
+          // Request is invalid, return empty response
+          return;
+        }
 
-    User userData = datastore.getUser(user);
+        Profile userData = datastore.getUser(user_email);
 
-    if(userData == null || userData.getAboutMe() == null) {
-      return;
-    }
+        if(userData == null || userData.getName() == null) {
+          response.getOutputStream().println("NULL");
+          return;
+        }
 
-		//response.getWriter().println("Hello world");
+        response.getOutputStream().println(userData.getName());
 
-    response.getOutputStream().println(userData.getAboutMe());
-  }
+        // String name = "FakeName"; 
+        // String username = "FakeUsername";
+        // String profile_pic = "Fake";
+        // String[] interests = {"muscles","cardio"}; 
+
+        // Profile newProfile = new Profile(name, username, profile_pic, interests);
+        // // datastore.storeUser(newProfile);
+
+        // response.getOutputStream().println(newProfile.getName());
+        // for (int i = 0; i < newProfile.getInterests().length; i++) {
+        //   response.getOutputStream().println(newProfile.getInterests()[i]);
+
+        }
+  
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
     UserService userService = UserServiceFactory.getUserService();
+
     if (!userService.isUserLoggedIn()) {
       response.sendRedirect("/index.html");
       return;
     }
 
-
     String userEmail = userService.getCurrentUser().getEmail();
-    String aboutMe = Jsoup.clean(request.getParameter("about-me"), Whitelist.none());
 
-    String name = "FakeName"; 
-    String username = "FakeUsername";
-    String profile_pic = "Fake";
-    String[] interests = {"muscles","cardio"}; 
+    String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ;    
+    // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
+    // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
 
-    User user = new User(userEmail, aboutMe);
-    datastore.storeUser(user);
+    Profile newProfile = new Profile(name, userEmail);
 
-    Profile newProfile = new Profile(name, username, profile_pic, interests);
-    //ofy().save().entity(newProfile).now(); //save it in data store 
+    
+    datastore.storeUser(newProfile);
 
     response.sendRedirect("/user-page.html?user=" + userEmail);
   }

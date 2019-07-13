@@ -12,20 +12,30 @@ public class Profile {
     private String name; 
     private String username;
     private String profile_pic;
-    UUID id;
-    private String [] interests; 
+    private UUID id;
+    private String interests; 
+    private String email;
 
-    public Profile(String name, String username, String profile_pic_URL, String [] interests) {
-        this(UUID.randomUUID(), name, username, profile_pic_URL,interests); 
+    public Profile(String name, String username, String profile_pic_URL, String interests, String email) {
+        this(UUID.randomUUID(), name, username, profile_pic_URL,interests, email); 
     }
 
-	public Profile(UUID id, String name, String username, String profile_pic_URL, String [] interests) {
+    public Profile(String name, String email){
+        this(UUID.randomUUID(), name, null, null,null, email);         
+    }
+
+	public Profile(UUID id, String name, String username, String profile_pic_URL, String interests, String email) {
         this.id = id;
         this.name = name; 
         this.username = username;
         this.profile_pic = profile_pic_URL;
         this.interests = interests;
+        this.email = email;
     }
+
+    public String getEmail(){
+        return this.email;
+      }    
     
     public UUID getID(){
         return this.id;
@@ -42,7 +52,7 @@ public class Profile {
         return this.profile_pic;
     }
 
-    public String [] getInterests(){
+    public String getInterests(){
         return this.interests;
     }
 

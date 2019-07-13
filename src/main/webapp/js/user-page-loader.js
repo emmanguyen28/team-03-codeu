@@ -163,12 +163,15 @@ function replaceImageAddressWithHTML(text) {
 /** fetches about me  */
 function fetchAboutMe(){
 	const url = '/about?user=' + parameterUsername;
-	fetch(url).then((response) => {
+	fetch(url).
+		then((response) => {
 	  return response.text();
-	}).then((aboutMe) => {
-	  const aboutMeContainer = document.getElementById('about-me-container');	  
+	}).then((new_name) => {
+
+		console.log(new_name)
+	  	const nameContainer = document.getElementById('name-container');	  
 	  
-	  aboutMeContainer.innerHTML = aboutMe;
+	  	nameContainer.innerHTML = new_name;
   
 	});
   }

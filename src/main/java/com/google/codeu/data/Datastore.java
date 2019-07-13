@@ -51,10 +51,18 @@ public class Datastore {
 	}
 
 	/** Stores the User in Datastore. */
-	public void storeUser(User user) {
+	public void storeUser(Profile user) {
 		Entity userEntity = new Entity("Profile", user.getEmail());
+		userEntity.setProperty("name", user.getName());
+		userEntity.setProperty("username", user.getUsername());
+		userEntity.setProperty("profile_pic", user.getProfilePic());
+		userEntity.setProperty("interests", user.getInterests());
 		userEntity.setProperty("email", user.getEmail());
-		userEntity.setProperty("aboutMe", user.getAboutMe());
+		
+		System.out.println(userEntity.toString());
+		System.out.println(userEntity.getKey());
+
+		System.out.println("Leaving datastore...");
 		datastore.put(userEntity);
 	}
 
@@ -64,9 +72,9 @@ public class Datastore {
 		* Returns the User owned by the email address, or
 		* null if no matching User was found.
 		*/
-	   public User getUser(String email) {
+	   public Profile getUser(String email) {
 	   
-		Query query = new Query("User")
+		Query query = new Query("Profile")
 		  .setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, email));
 		PreparedQuery results = datastore.prepare(query);
 		Entity userEntity = results.asSingleEntity();
@@ -74,9 +82,15 @@ public class Datastore {
 		 return null;
 		}
 		
-		String aboutMe = (String) userEntity.getProperty("aboutMe");
-		User user = new User(email, aboutMe);
-		
+		// String aboutMe = (String) userEntity.getProperty("aboutMe");
+
+		String name = (String) userEntity.getProperty("name");
+		String username = (String) userEntity.getProperty("username");
+		String profile_pic = (String) userEntity.getProperty("profile_pic");
+		String interests = (String) userEntity.getProperty("interests");
+
+		Profile user = new Profile(name, username, profile_pic, interests, email) ;
+
 		return user;
 	   }
 
