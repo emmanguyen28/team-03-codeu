@@ -167,11 +167,17 @@ function fetchAboutMe(){
 		then((response) => {
 	  return response.json();
 	}).then((new_name) => {
+		if (new_name.length == 0) {
+			messagesContainer.innerHTML = '<p>Please enter name .</p>';
+		} else{
 
-		console.log(new_name)
+			console.log(new_name)
 	  	const nameContainer = document.getElementById('name-container');	  
 	  
 	  	nameContainer.innerHTML = new_name.name;
+		}
+
+		
   
 	});
   }
