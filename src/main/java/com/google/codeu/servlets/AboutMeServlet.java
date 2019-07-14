@@ -90,23 +90,36 @@ public class AboutMeServlet extends HttpServlet {
     }
 
     String userEmail = userService.getCurrentUser().getEmail();
+    String name = "";
+    String username = "";
+
+
+
+    if (datastore.getUser(userEmail) != null){
+      Profile newProfile = datastore.getUser(userEmail);
+      name = newProfile.getName();
+      username = newProfile.getUsername();
+
+    } 
 
     // String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
 
     if (request.getParameter("user-name") != null){
-      String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
+      name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
 
-    }
+    } 
 
     if(request.getParameter("user-username") != null){
-      String username =  Jsoup.clean(request.getParameter("user-username"), Whitelist.none()) ; 
+      username =  Jsoup.clean(request.getParameter("user-username"), Whitelist.none()) ; 
 
     }
 
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
 
-    Profile newProfile = new Profile(name, userEmail);
+    Profile newProfile = Profile(String name, String username, String email)
+
+
 
     
     datastore.storeUser(newProfile);
