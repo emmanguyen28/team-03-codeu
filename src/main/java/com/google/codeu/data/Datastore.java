@@ -59,8 +59,6 @@ public class Datastore {
 		userEntity.setProperty("interests", user.getInterests());
 		userEntity.setProperty("email", user.getEmail());
 		
-		System.out.println(userEntity.toString());
-		System.out.println(userEntity.getKey());
 
 		System.out.println("Leaving datastore...");
 		datastore.put(userEntity);
