@@ -32,7 +32,7 @@ public class ConversationTopic {
 		return creator;
 	}
 
-	public long gettimestamp() {
+	public long getTimestamp() {
 		return timestamp;
 	}
 }

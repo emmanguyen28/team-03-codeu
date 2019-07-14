@@ -31,8 +31,7 @@ public class ConversationTopicsServlet extends HttpServlet {
     }
 
     /**
-     * Responds with a JSON representation of {@link Message} data for a specific
-     * user. Responds with an empty array if the user is not provided.
+     * Responds with a JSON representation of all {@link ConversationTopic} objects
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -46,7 +45,7 @@ public class ConversationTopicsServlet extends HttpServlet {
         response.getOutputStream().println(json);
     }
 
-    /** Stores a new {@link Message}. */
+    /** Stores a new {@link ConversationTopic}. */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("This will create a new conversation topic instance and redirect you to that intance");

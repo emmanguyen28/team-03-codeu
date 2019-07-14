@@ -94,3 +94,7 @@ body {
 .hidden {
   display: none;
 }
+
+#message-container ul li {
+  word-break: break-all; 
+}

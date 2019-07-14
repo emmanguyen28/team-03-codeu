@@ -87,13 +87,21 @@ public class MessageServlet extends HttpServlet {
 		String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrls = getUploadedFileUrl(request, "image");
-		System.out.println(imageUrls);
-		
-		// if imageUrls is null, it's saved like that. Will be taken care of on the front end
-		Message message = new Message(user, text, imageUrls);
+
+		String conversationTopicId = request.getParameter("conversationTopicId");
+		System.out.println("inside messageServlet " + request.getParameter("conversationTopicId"));
+
+		// if imageUrls is null, it's saved like that. Will be taken care of on the
+		// front end
+		Message message = new Message(user, text, imageUrls, conversationTopicId);
 		datastore.storeMessage(message);
 
-		response.sendRedirect("/user-page.html?user=" + user);
+		// if message has conversation topic id, then just reload page
+		if (conversationTopicId != null) {
+			response.sendRedirect("/single-conversation-topic.html?id=" + conversationTopicId);
+		} else {
+			response.sendRedirect("/user-page.html?user=" + user);
+		}
 	}
 
 	/**
@@ -104,7 +112,7 @@ public class MessageServlet extends HttpServlet {
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
 		List<BlobKey> blobKeys = blobs.get("image");
-		System.out.println(blobKeys);
+		System.out.println("blobKeys: " + blobKeys);
 
 		// User submitted form without selecting a file, so we can't get a URL.
 		// (devserver)
@@ -117,11 +125,11 @@ public class MessageServlet extends HttpServlet {
 
 		// User submitted form without selecting a file, so we can't get a URL. (live
 		// server)
-//	    BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-//	    if (blobInfo.getSize() == 0) {
-//	      blobstoreService.delete(blobKey);
-//	      return null;
-//	    }
+		// BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+		// if (blobInfo.getSize() == 0) {
+		// blobstoreService.delete(blobKey);
+		// return null;
+		// }
 
 		// TODO: check the validity of the file here, e.g. to make sure it's an image
 		// file

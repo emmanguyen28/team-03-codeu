@@ -65,7 +65,7 @@ public class Message {
     return text;
   }
 
-  public long gettimestamp() {
+  public long getTimestamp() {
     return timestamp;
   }
   

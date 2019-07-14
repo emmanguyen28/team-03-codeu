@@ -70,10 +70,6 @@
   margin-right: auto;
 }
 
-#message-container ul li {
-  word-break: break-all; 
-}
-
 #file-input {
   text-align: center;
   margin: auto; 
