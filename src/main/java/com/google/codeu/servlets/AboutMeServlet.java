@@ -117,7 +117,7 @@ public class AboutMeServlet extends HttpServlet {
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
 
-    Profile newProfile = Profile(String name, String username, String email)
+    Profile newProfile = Profile(name, username, userEmail);
 
 
 
