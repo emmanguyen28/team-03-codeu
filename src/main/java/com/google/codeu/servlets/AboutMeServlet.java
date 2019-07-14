@@ -47,7 +47,7 @@ public class AboutMeServlet extends HttpServlet {
 
 
         
-        if ( user_email == null || user_email.equals("") ) ) {
+        if ( user_email == null || user_email.equals("") ) {
           // Request is invalid, return empty array
           
           response.getWriter().println("[]");
