@@ -170,6 +170,7 @@ function fetchAboutMe(){
 
 		const nameContainer = document.getElementById('name-container');
 		const userNameContainer = document.getElementById('username-container');
+		const interestsContainer = document.getElementById('username-container');
 		if (new_name){
 			if (new_name.length == 0) {
 				nameContainer.innerHTML = 'Please enter name ';
@@ -179,6 +180,7 @@ function fetchAboutMe(){
 		  
 				  nameContainer.innerHTML = new_name.name;
 				  userNameContainer.innerHTML = new_name.username;
+				  interestsContainer.innerHTML = new_name.interests;
 			}
 	
 		} else{

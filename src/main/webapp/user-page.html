@@ -56,7 +56,7 @@ limitations under the License.
 
     <div id="about-me-form" class="hidden">
       <form action="/about" method="POST">
-        <textarea name="user-name" placeholder="about me" rows=4 required></textarea>
+        <textarea name="user-name" placeholder="Update your name here" rows=4 required></textarea>
         <br/>
         <input type="submit" value="Submit">
       </form>
@@ -67,7 +67,18 @@ limitations under the License.
 
     <div >
       <form action="/about" method="POST">
-        <textarea name="user-username" placeholder="about me" rows=4 required></textarea>
+        <textarea name="user-username" placeholder="Update your username here" rows=4 required></textarea>
+        <br/>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <h2 id="interests-container">Loading...</h2>
+
+
+    <div >
+      <form action="/about" method="POST">
+        <textarea name="user-interests" placeholder="List your interests here" rows=4 required></textarea>
         <br/>
         <input type="submit" value="Submit">
       </form>

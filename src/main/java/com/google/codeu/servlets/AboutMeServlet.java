@@ -92,13 +92,15 @@ public class AboutMeServlet extends HttpServlet {
     String userEmail = userService.getCurrentUser().getEmail();
     String name = "";
     String username = "";
+    String interests = "";
 
 
 
     if (datastore.getUser(userEmail) != null){
       Profile newProfile = datastore.getUser(userEmail);
       name = newProfile.getName();
-      username = newProfile.getUsername();
+      username = newProfile.getUsername(); 
+      interests = newProfile.getInterests();
 
     } 
 
@@ -114,11 +116,16 @@ public class AboutMeServlet extends HttpServlet {
 
     }
 
+    if(request.getParameter("user-interests") != null){
+      interests =  Jsoup.clean(request.getParameter("user-interests"), Whitelist.none()) ; 
+
+    }
+
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
     // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
 
-    Profile newProfile = new Profile(name, username, userEmail);
-
+    Profile newProfile = new Profile(name, username, "", interests, userEmail);
+    // String name, String username, String profile_pic_URL, String interests, String email)
 
 
     
