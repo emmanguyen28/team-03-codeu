@@ -43,7 +43,6 @@ public class AboutMeServlet extends HttpServlet {
         response.setContentType("application/json");
 
         String user_email = request.getParameter("user");
-        String user = request.getParameter("user");
 
 
         
@@ -54,7 +53,6 @@ public class AboutMeServlet extends HttpServlet {
           return;// stop
         }
 
-        String user = request.getParameter("user");
 
         Profile userData = datastore.getUser(user_email);
 
