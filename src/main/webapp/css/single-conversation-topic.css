@@ -42,6 +42,11 @@
   margin-right: 50px;
   color: #ff6a00;
   font-size: 14px;
+  width: 150px;
+  overflow-wrap: break-word;
+}
+
+.profile-div-container {
   display: flex;
   align-items: center;
 }

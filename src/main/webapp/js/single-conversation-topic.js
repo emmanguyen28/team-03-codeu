@@ -98,7 +98,11 @@ function buildMessageDiv(message) {
   profile_div.classList.add("profile-div");
   // add fontawesome pic here
   profile_div.appendChild(document.createTextNode(message.user));
-  wrapper.appendChild(profile_div);
+  
+  const profile_div_container = document.createElement("div");
+  profile_div_container.classList.add("profile-div-container");
+  profile_div_container.appendChild(profile_div);
+  wrapper.appendChild(profile_div_container);
 
   const messageCard = document.createElement("div");
   messageCard.classList.add("message-card", "card");
