@@ -21,7 +21,8 @@ public class Profile {
     }
 
     public Profile(String name, String email){
-        this(UUID.randomUUID(), name, null, null,null, email);         
+        this(UUID.randomUUID(), name, null, null,null, email); 
+       
     }
 
     public Profile(String name, String username, String email){
