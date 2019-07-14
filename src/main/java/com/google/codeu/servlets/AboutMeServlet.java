@@ -40,20 +40,21 @@ public class AboutMeServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
-        response.setContentType("text/html");
+        response.setContentType("application/json");
 
         String user_email = request.getParameter("user");
         String user = request.getParameter("user");
 
 
         
-        if ( user_email == null || user_email.equals("") || user == null || user.equals("") ) {
+        if ( user_email == null || user_email.equals("") ) ) {
           // Request is invalid, return empty array
-          Gson gson = new Gson();
-		      String json = gson.toJson("[]");
+          
           response.getWriter().println("[]");
           return;// stop
         }
+
+        String user = request.getParameter("user");
 
         Profile userData = datastore.getUser(user_email);
 
