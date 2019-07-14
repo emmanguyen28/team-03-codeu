@@ -13,6 +13,8 @@ import com.google.codeu.data.Datastore;
 import com.google.codeu.data.User;
 import com.google.codeu.data.Profile;
 
+import com.google.codeu.servlets.MessageServlet;
+
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import com.google.gson.Gson;
@@ -121,8 +123,14 @@ public class AboutMeServlet extends HttpServlet {
 
     }
 
-    // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
-    // String name =  Jsoup.clean(request.getParameter("about-me"), Whitelist.none()) ;   
+     
+    
+    // if(request.getParameter("user-profile-pic") != null){
+    //   interests =  Jsoup.clean(request.getParameter("user-profile-pic"), Whitelist.none()) ; 
+
+    // } 
+	   
+     
 
     Profile newProfile = new Profile(name, username, "", interests, userEmail);
     // String name, String username, String profile_pic_URL, String interests, String email)
