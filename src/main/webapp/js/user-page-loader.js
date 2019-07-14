@@ -88,37 +88,7 @@ function fetchMessages() {
  * @return {Element}
  */
 function buildMessageDiv(message) {
-	// console.log('user-page-loader.js -- buildMessageDiv');
-	// const headerDiv = document.createElement('div');
-	// headerDiv.classList.add('message-header');
-	// headerDiv.appendChild(document.createTextNode(
-	// message.user + ' - ' + new Date(message.timestamp)));
-
-	// const bodyDiv = document.createElement('div');
-	// bodyDiv.classList.add('message-body');
-	// var messageText = message.text;
-	// bodyDiv.innerHTML = replaceImageAddressWithHTML(messageText);
-
-	// console.log(message.imageUrl);
-	// const imageUrl = message.imageUrl;
 	
-	// // 1st check checks for null, undefined, empty strings
-	// // 2nd check check if string is made up  of only white spaces
-	// if (Boolean(imageUrl) && !!imageUrl.trim()) {
-	// 	console.log('inside if');
-	// 	const image = document.createElement('img');
-	// 	image.src = imageUrl;
-	// 	console.log(image);
-	// 	bodyDiv.appendChild(image);
-	// }
-	
-	// const messageDiv = document.createElement('div');
-	// messageDiv.classList.add('message-div');
-	// messageDiv.appendChild(headerDiv);
-	// messageDiv.appendChild(bodyDiv);
-
-	// return messageDiv;
-
 	const wrapper = document.createElement('div'); 
     wrapper.classList.add('card');
     wrapper.style = 'width: 70rem'; 
@@ -143,18 +113,34 @@ function buildMessageDiv(message) {
     card_list.appendChild(time_li);
 
     const message_li = document.createElement('li'); 
-    message_li.classList.add('list-group-item'); 
-    message_li.appendChild(document.createTextNode(message.text)); 
+	message_li.classList.add('list-group-item');
+
+	const text_div = document.createElement('div');
+	text_div.innerHTML = convertImageAddressToAnchorTag(message.text);
+	message_li.appendChild(text_div);
+	
+	const imageUrl = message.imageUrl;
+	// 1st check checks for null, undefined, empty strings
+	// 2nd check check if string is made up  of only white spaces
+	if (Boolean(imageUrl) && !!imageUrl.trim()) {
+		console.log('inside if');
+		const image = document.createElement('img');
+		image.src = imageUrl;
+		console.log(image);
+		message_li.appendChild(image);
+	}
+
     card_list.appendChild(message_li); 
 
     return wrapper;
 }
 
 /** Replace image links with the img HTML tag*/
-function replaceImageAddressWithHTML(text) {
+function convertImageAddressToAnchorTag(text) {
 	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
 	const replacement = '<a href="$&" target="_blank">$&</a>';
 	const result = text.replace(regex, replacement);
+	console.log(result);
 	return result;
 }
 

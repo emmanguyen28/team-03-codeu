@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Message Feed</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/conversation-topic.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="/js/navigation-loader.js"></script>
+	<script src="/js/conversation-topics.js"></script>
+</head>
+
+<body onload="addLoginOrLogoutLinkToNavigation(); buildUI()">
+	<div class="container-fluid">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">SportsPal</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="/aboutus.html">About Our Team</a></li>
+					<li><a href="/community.html">Community</a></li>
+					<li><a href="/feed.html">Feed</a></li>
+					<li><a href="/stats.html">Stats</a></li>
+					<li><a href="/conversation-topics.html">Conversation Topics</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="sign-in-to-create-chatroom">
+			<p>sign in to create a new conversation topic</p>
+		</div>
+
+		<div id="create-conversation-topic-div" class="hidden">
+			<form action="/conversation-topics" method="POST" id="create-conversation-topic-form">
+				<label for="conversation-topic-title-input">Create a new topic</label>
+				<input name="conversationTopicTitle" type="text" id="conversation-topic-title-input"
+					placeholder="title">
+				<button id="createConversationTopicButton" type="submit" value="Submit">Create</button>
+			</form>
+
+			<br>
+		</div>
+		<div id="conversation-topics-container">
+		</div>
+	</div>
+</body>
+
+</html>
