@@ -59,8 +59,6 @@ public class Datastore {
 		userEntity.setProperty("interests", user.getInterests());
 		userEntity.setProperty("email", user.getEmail());
 		
-
-		System.out.println("Leaving datastore...");
 		datastore.put(userEntity);
 	}
 
@@ -80,7 +78,6 @@ public class Datastore {
 		 return null;
 		}
 		
-		// String aboutMe = (String) userEntity.getProperty("aboutMe");
 
 		String name = (String) userEntity.getProperty("name");
 		String username = (String) userEntity.getProperty("username");

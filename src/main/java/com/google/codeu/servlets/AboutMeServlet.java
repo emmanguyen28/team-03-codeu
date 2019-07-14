@@ -36,7 +36,7 @@ public class AboutMeServlet extends HttpServlet {
   }
 
   /**
-   * Responds with the "about me" section for a particular user.
+   * Responds with the profile for a particular user.
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -65,21 +65,11 @@ public class AboutMeServlet extends HttpServlet {
 
         response.getOutputStream().println(json);
 
-        // String name = "FakeName"; 
-        // String username = "FakeUsername";
-        // String profile_pic = "Fake";
-        // String[] interests = {"muscles","cardio"}; 
-
-        // Profile newProfile = new Profile(name, username, profile_pic, interests);
-        // // datastore.storeUser(newProfile);
-
-        // response.getOutputStream().println(newProfile.getName());
-        // for (int i = 0; i < newProfile.getInterests().length; i++) {
-        //   response.getOutputStream().println(newProfile.getInterests()[i]);
 
         }
   
 
+  /** Updates user's profile information with inputs */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
@@ -100,13 +90,12 @@ public class AboutMeServlet extends HttpServlet {
 
     if (datastore.getUser(userEmail) != null){
       Profile newProfile = datastore.getUser(userEmail);
+      
       name = newProfile.getName();
       username = newProfile.getUsername(); 
       interests = newProfile.getInterests();
 
     } 
-
-    // String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
 
     if (request.getParameter("user-name") != null){
       name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
@@ -121,22 +110,10 @@ public class AboutMeServlet extends HttpServlet {
     if(request.getParameter("user-interests") != null){
       interests =  Jsoup.clean(request.getParameter("user-interests"), Whitelist.none()) ; 
 
-    }
-
-     
-    
-    // if(request.getParameter("user-profile-pic") != null){
-    //   interests =  Jsoup.clean(request.getParameter("user-profile-pic"), Whitelist.none()) ; 
-
-    // } 
-	   
-     
+    }   
 
     Profile newProfile = new Profile(name, username, "", interests, userEmail);
-    // String name, String username, String profile_pic_URL, String interests, String email)
 
-
-    
     datastore.storeUser(newProfile);
 
     response.sendRedirect("/user-page.html?user=" + userEmail);
