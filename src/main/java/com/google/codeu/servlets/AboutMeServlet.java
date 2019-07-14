@@ -93,12 +93,12 @@ public class AboutMeServlet extends HttpServlet {
 
     // String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
 
-    if (request.getParameter("user-name")){
+    if (request.getParameter("user-name") != null){
       String name =  Jsoup.clean(request.getParameter("user-name"), Whitelist.none()) ; 
 
     }
 
-    if(request.getParameter("user-username")){
+    if(request.getParameter("user-username") != null){
       String username =  Jsoup.clean(request.getParameter("user-username"), Whitelist.none()) ; 
 
     }
