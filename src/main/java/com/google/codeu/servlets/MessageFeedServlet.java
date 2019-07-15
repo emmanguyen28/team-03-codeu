@@ -29,7 +29,7 @@ public class MessageFeedServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
 
-        List<Message> messages = datastore.getAllMessages(); 
+        List<Message> messages = datastore.getAllFeedMessages(); 
         Gson gson = new Gson(); 
         String json = gson.toJson(messages); 
 
