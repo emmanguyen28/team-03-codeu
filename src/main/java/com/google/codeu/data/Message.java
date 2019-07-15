@@ -27,6 +27,7 @@ public class Message {
   private long timestamp;
   private String imageUrl;
   private String tag; 
+  private String conversationTopicId;
 
   /**
    * Constructs a new {@link Message} posted by {@code user} with {@code text} content. Generates a
@@ -36,21 +37,26 @@ public class Message {
     this(UUID.randomUUID(), user, text, System.currentTimeMillis(), null, ""); // imageUrl is null if user didn't upload an image
   }
 
-  public Message(String user, String text, String imageURL, String tag) {
-    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageURL, tag); 
+  public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag) {
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), null, "", null); // imageUrl is null if user didn't upload an image
   }
   
   public Message(String user, String text, String imageUrl) {
-	  this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, "");
+	  this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, "", null);
   }
 
-  public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag) {
+  public Message(String user, String text, String imageUrl, String conversationTopicId) {
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl,"", conversationTopicId);
+  }
+
+  public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag, String conversationTopicId) {
     this.id = id;
     this.user = user;
     this.text = text;
     this.timestamp = timestamp;
     this.imageUrl = imageUrl;
     this.tag = tag; 
+    this.conversationTopicId = conversationTopicId;
   }
 
   public UUID getId() {
@@ -65,7 +71,7 @@ public class Message {
     return text;
   }
 
-  public long getTimestamp() {
+  public long gettimestamp() {
     return timestamp;
   }
   
@@ -75,5 +81,9 @@ public class Message {
 
   public String getTag() {
     return tag; 
+  }
+
+  public String getConversationTopicId() {
+    return conversationTopicId;
   }
 }

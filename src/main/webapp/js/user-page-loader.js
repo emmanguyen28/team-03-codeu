@@ -142,11 +142,6 @@ function buildMessageDiv(message) {
 	time_li.appendChild(document.createTextNode(new Date(message.timestamp)));
 	card_list.appendChild(time_li);
 
-	const message_li = document.createElement('li');
-	message_li.classList.add('list-group-item');
-	message_li.appendChild(document.createTextNode(message.text));
-	card_list.appendChild(message_li);
-
 	const tag_li = document.createElement('li');
 	tag_li.classList.add('list-group-item');
 	if (message.tag == '') {
@@ -155,14 +150,35 @@ function buildMessageDiv(message) {
 	tag_li.appendChild(document.createTextNode("Tag: " + message.tag));
 	card_list.appendChild(tag_li);
 
+	const message_li = document.createElement('li'); 
+	message_li.classList.add('list-group-item');
+
+	const text_div = document.createElement('div');
+	text_div.innerHTML = convertImageAddressToAnchorTag(message.text);
+	message_li.appendChild(text_div);
+	
+	const imageUrl = message.imageUrl;
+	// 1st check checks for null, undefined, empty strings
+	// 2nd check check if string is made up  of only white spaces
+	if (Boolean(imageUrl) && !!imageUrl.trim()) {
+		console.log('inside if');
+		const image = document.createElement('img');
+		image.src = imageUrl;
+		console.log(image);
+		message_li.appendChild(image);
+	}
+
+    card_list.appendChild(message_li); 
+
 	return wrapper;
 }
 
 /** Replace image links with the img HTML tag*/
-function replaceImageAddressWithHTML(text) {
+function convertImageAddressToAnchorTag(text) {
 	const regex = /(https?:\/\/.*\.(?:png|jpg))/i;
 	const replacement = '<a href="$&" target="_blank">$&</a>';
 	const result = text.replace(regex, replacement);
+	console.log(result);
 	return result;
 }
 

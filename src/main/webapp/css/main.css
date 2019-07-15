@@ -90,3 +90,7 @@ body {
   word-break: break-all; 
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}

@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -43,11 +44,23 @@ public class Datastore {
 		Entity messageEntity = new Entity("Message", message.getId().toString());
 		messageEntity.setProperty("user", message.getUser());
 		messageEntity.setProperty("text", message.getText());
-		messageEntity.setProperty("timestamp", message.getTimestamp());
+		messageEntity.setProperty("timestamp", message.gettimestamp());
 		messageEntity.setProperty("imageUrl", message.getImageUrl());
 		messageEntity.setProperty("tag", message.getTag());
+		messageEntity.setProperty("conversationTopic", message.getConversationTopicId());
 
 		datastore.put(messageEntity);
+	}
+
+	/** Stores conversation topic in Datastore. */
+	public void storeConversationTopic(ConversationTopic conversationTopic) {
+		System.out.println("storing conversation topic");
+		Entity conversationTopicEntity = new Entity("ConversationTopic", conversationTopic.getId().toString());
+		conversationTopicEntity.setProperty("title", conversationTopic.getTitle());
+		conversationTopicEntity.setProperty("creator", conversationTopic.getCreator());
+		conversationTopicEntity.setProperty("timestamp", conversationTopic.gettimestamp());
+
+		datastore.put(conversationTopicEntity);
 	}
 
 	/**
@@ -72,8 +85,8 @@ public class Datastore {
 				long timestamp = (long) entity.getProperty("timestamp");
 				String imageUrl = (String) entity.getProperty("imageUrl");
 				String tag = (String) entity.getProperty("tag");
-
-				Message message = new Message(id, user, text, timestamp, imageUrl, tag);
+				String conversationTopicId = (String) entity.getProperty("conversationTopicId");
+				Message message = new Message(id, user, text, timestamp, imageUrl, tag, conversationTopicId);
 				messages.add(message);
 			} catch (Exception e) {
 				// System.err.println("Error reading message.");
@@ -160,5 +173,42 @@ public class Datastore {
 	 */
 	public int getAverageMessageLength() {
 		return getTotalMessageLength() / getAllMessages().size();
+	}
+
+	/** Get all conversation topics */
+	public List<ConversationTopic> getAllConversationTopics() {
+		Query query = new Query("ConversationTopic").addSort("timestamp", SortDirection.DESCENDING);
+
+		return getQueryConversationTopics(query);
+	}
+
+	/**
+	 * Get conversation topics matching a specific query
+	 */
+	public List<ConversationTopic> getQueryConversationTopics(Query query) {
+
+		List<ConversationTopic> conversationTopics = new ArrayList<>();
+		PreparedQuery results = datastore.prepare(query);
+
+		for(Entity entity : results.asIterable()) {
+			try {
+				Key key = entity.getKey();
+				System.out.println("entity.getKey() = " + key);
+				String idString = entity.getKey().getName();
+				System.out.println("entity.getKey().getName() = " + idString);
+				UUID id = UUID.fromString(idString);
+				String creator = (String) entity.getProperty("creator");
+				String title = (String) entity.getProperty("title");
+				long timestamp = (long) entity.getProperty("timestamp");
+
+				ConversationTopic conversationTopic = new ConversationTopic(id, title, creator, timestamp);
+				conversationTopics.add(conversationTopic);
+			} catch (Exception e) {
+				System.err.println(String.format("Error reading message: [%s]", entity.toString()));
+				e.printStackTrace();
+			}
+		}
+
+		return conversationTopics;
 	}
 }
