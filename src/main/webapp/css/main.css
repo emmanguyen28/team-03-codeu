@@ -90,3 +90,11 @@ body {
   word-break: break-all; 
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}
+
+#message-container ul li {
+  word-break: break-all; 
+}

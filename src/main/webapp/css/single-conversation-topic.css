@@ -1,0 +1,80 @@
+#conversation-topic-container {
+  width: 996px;
+  margin: auto;
+}
+
+#conversation-topic-div {
+}
+
+#single-conversation-topic-form {
+  margin-bottom: 50px;
+}
+
+#conversation-topic-title-div {
+  height: 50px;
+  padding: 10px;
+  text-align: center;
+  font-size: 26px;
+  padding: 10px 30px;
+}
+
+#conversation-topic-messages-div {
+  height: 400px;
+}
+
+#conversation-topic-input-message-div {
+  height: 45px;
+}
+
+#conversation-topic-input-message-div textarea {
+  width: 90%;
+  height: 100%;
+  float: left;
+}
+
+#conversation-topic-input-message-div button {
+  width: 10%;
+  height: 100%;
+  float: right;
+}
+
+.profile-div {
+  margin-right: 50px;
+  color: #ff6a00;
+  font-size: 14px;
+  width: 150px;
+  overflow-wrap: break-word;
+}
+
+.profile-div-container {
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  margin: 0 !important;
+}
+
+.message-card {
+  border: 1px solid #d4c9c9;
+  border-radius: 5px;
+  padding: 16px 20px;
+  width: 100%;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.timestampDiv {
+  font-size: 10px;
+}
+
+.messageDiv {
+  font-size: 16px;
+}
+
+.wrapper {
+  margin-bottom: 30px;
+}

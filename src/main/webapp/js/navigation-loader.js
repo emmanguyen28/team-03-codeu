@@ -19,6 +19,7 @@
  * already logged in.
  */
 function addLoginOrLogoutLinkToNavigation() {
+	console.log('inside ');
 	const navigationElement = document.getElementsByClassName('nav navbar-nav')[0];
 	console.log(navigationElement);
 	if (!navigationElement) {

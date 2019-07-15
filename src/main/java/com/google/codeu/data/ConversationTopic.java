@@ -1,39 +1,27 @@
 package com.google.codeu.data;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 public class ConversationTopic {
 
-	private UUID uuid;
+	private UUID id;
 	private String title;
-	// maybe list of hashtags?
 	private String creator;
-	private long timeStamp;
-	private Set<String> users;
-	private List<Message> messages;
-	// time it was created and by which user
+	private long timestamp;
 
 	public ConversationTopic(String title, String creator) {
-		this(UUID.randomUUID(), title, creator, System.currentTimeMillis(), new HashSet<String>(),
-				new ArrayList<Message>());
+		this(UUID.randomUUID(), title, creator, System.currentTimeMillis());
 	}
 
-	public ConversationTopic(UUID uuid, String title, String creator, long timeStamp, Set<String> users,
-			List<Message> messages) {
-		this.uuid = uuid;
+	public ConversationTopic(UUID id, String title, String creator, long timestamp) {
+		this.id = id;
 		this.title = title;
 		this.creator = creator;
-		this.timeStamp = timeStamp;
-		this.users = users;
-		this.messages = messages;
+		this.timestamp = timestamp;
 	}
 
-	public UUID getUuid() {
-		return uuid;
+	public UUID getId() {
+		return id;
 	}
 
 	public String getTitle() {
@@ -44,15 +32,7 @@ public class ConversationTopic {
 		return creator;
 	}
 
-	public long getTimeStamp() {
-		return timeStamp;
-	}
-
-	public Set<String> getUsers() {
-		return users;
-	}
-
-	public List<Message> getMessages() {
-		return messages;
+	public long getTimestamp() {
+		return timestamp;
 	}
 }
