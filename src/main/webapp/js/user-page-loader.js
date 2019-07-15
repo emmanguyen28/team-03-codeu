@@ -101,7 +101,7 @@ function buildMessageDiv(message) {
 
 	// console.log(message.imageUrl);
 	// const imageUrl = message.imageUrl;
-	
+
 	// // 1st check checks for null, undefined, empty strings
 	// // 2nd check check if string is made up  of only white spaces
 	// if (Boolean(imageUrl) && !!imageUrl.trim()) {
@@ -111,7 +111,7 @@ function buildMessageDiv(message) {
 	// 	console.log(image);
 	// 	bodyDiv.appendChild(image);
 	// }
-	
+
 	// const messageDiv = document.createElement('div');
 	// messageDiv.classList.add('message-div');
 	// messageDiv.appendChild(headerDiv);
@@ -119,35 +119,43 @@ function buildMessageDiv(message) {
 
 	// return messageDiv;
 
-	const wrapper = document.createElement('div'); 
-    wrapper.classList.add('card');
-    wrapper.style = 'width: 70rem'; 
+	const wrapper = document.createElement('div');
+	wrapper.classList.add('card');
+	wrapper.style = 'width: 70rem';
 
-    const inner_wrapper = document.createElement('div'); 
-    inner_wrapper.classList.add('card-body'); 
-    wrapper.appendChild(inner_wrapper); 
+	const inner_wrapper = document.createElement('div');
+	inner_wrapper.classList.add('card-body');
+	wrapper.appendChild(inner_wrapper);
 
-    const card_title = document.createElement('h4');
-    card_title.classList.add('card-title'); 
-    card_title.appendChild(document.createTextNode(message.user)); 
-    inner_wrapper.appendChild(card_title); 
+	const card_title = document.createElement('h4');
+	card_title.classList.add('card-title');
+	card_title.appendChild(document.createTextNode(message.user));
+	inner_wrapper.appendChild(card_title);
 
-    const card_list = document.createElement('ul');
-    card_list.classList.add('list-group');
-    card_list.classList.add('list-group-flush'); 
-    wrapper.appendChild(card_list); 
+	const card_list = document.createElement('ul');
+	card_list.classList.add('list-group');
+	card_list.classList.add('list-group-flush');
+	wrapper.appendChild(card_list);
 
-    const time_li = document.createElement('li'); 
-    time_li.classList.add('list-group-item'); 
-    time_li.appendChild(document.createTextNode(new Date(message.timestamp))); 
-    card_list.appendChild(time_li);
+	const time_li = document.createElement('li');
+	time_li.classList.add('list-group-item');
+	time_li.appendChild(document.createTextNode(new Date(message.timestamp)));
+	card_list.appendChild(time_li);
 
-    const message_li = document.createElement('li'); 
-    message_li.classList.add('list-group-item'); 
-    message_li.appendChild(document.createTextNode(message.text)); 
-    card_list.appendChild(message_li); 
+	const message_li = document.createElement('li');
+	message_li.classList.add('list-group-item');
+	message_li.appendChild(document.createTextNode(message.text));
+	card_list.appendChild(message_li);
 
-    return wrapper;
+	const tag_li = document.createElement('li');
+	tag_li.classList.add('list-group-item');
+	if (message.tag == '') {
+		message.tag = 'None'; 
+	}
+	tag_li.appendChild(document.createTextNode("Tag: " + message.tag));
+	card_list.appendChild(tag_li);
+
+	return wrapper;
 }
 
 /** Replace image links with the img HTML tag*/

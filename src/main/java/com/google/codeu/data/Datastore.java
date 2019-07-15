@@ -27,12 +27,11 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.*; 
+import java.util.*;
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
 
-  
 	private DatastoreService datastore;
 
 	public Datastore() {
@@ -46,6 +45,7 @@ public class Datastore {
 		messageEntity.setProperty("text", message.getText());
 		messageEntity.setProperty("timestamp", message.getTimestamp());
 		messageEntity.setProperty("imageUrl", message.getImageUrl());
+		messageEntity.setProperty("tag", message.getTag());
 
 		datastore.put(messageEntity);
 	}
@@ -71,13 +71,14 @@ public class Datastore {
 				String text = (String) entity.getProperty("text");
 				long timestamp = (long) entity.getProperty("timestamp");
 				String imageUrl = (String) entity.getProperty("imageUrl");
+				String tag = (String) entity.getProperty("tag");
 
-				Message message = new Message(id, user, text, timestamp, imageUrl);
+				Message message = new Message(id, user, text, timestamp, imageUrl, tag);
 				messages.add(message);
 			} catch (Exception e) {
-				//System.err.println("Error reading message.");
-        //System.err.println(entity.toString());
-        System.err.println(String.format("Error reading message: [%s]", entity.toString()));
+				// System.err.println("Error reading message.");
+				// System.err.println(entity.toString());
+				System.err.println(String.format("Error reading message: [%s]", entity.toString()));
 				e.printStackTrace();
 			}
 		}
@@ -99,6 +100,18 @@ public class Datastore {
 	}
 
 	/**
+	 * Get all messages with specified tag
+	 * @param tag
+	 * @return a list of messages with specified tag
+	 */
+	public List<Message> getAllMessagesWithTag(String tag) {
+		Query query = new Query("Message").setFilter(new Query.FilterPredicate("tag", FilterOperator.EQUAL, tag)).addSort("timestamp", SortDirection.DESCENDING); 
+		
+		return getQueryMessages(query); 
+
+	}
+
+	/**
 	 * Get all messages from all users
 	 */
 	public List<Message> getAllMessages() {
@@ -107,17 +120,18 @@ public class Datastore {
 		return getQueryMessages(query);
 
 	}
+
 	/**
-	 * Fetches and returns a list of all users 
+	 * Fetches and returns a list of all users
 	 */
-	public Set<String> getUsers(){
-		  Set<String> users = new HashSet<>();
-		  Query query = new Query("Message");
-		  PreparedQuery results = datastore.prepare(query);
-		  for(Entity entity : results.asIterable()) {
-		    users.add((String) entity.getProperty("user"));
-		  }
-		  return users;
+	public Set<String> getUsers() {
+		Set<String> users = new HashSet<>();
+		Query query = new Query("Message");
+		PreparedQuery results = datastore.prepare(query);
+		for (Entity entity : results.asIterable()) {
+			users.add((String) entity.getProperty("user"));
+		}
+		return users;
 	}
 
 	/**
@@ -128,19 +142,19 @@ public class Datastore {
 		PreparedQuery results = datastore.prepare(query);
 		return results.countEntities(FetchOptions.Builder.withLimit(1000));
 	}
-	
+
 	/**
 	 * Returns the total length of all messages
 	 */
 	public int getTotalMessageLength() {
 		int totalMsgLength = 0;
 		List<Message> allMessages = getAllMessages();
-		for(Message message : allMessages) {
+		for (Message message : allMessages) {
 			totalMsgLength += message.getText().length();
 		}
 		return totalMsgLength;
 	}
-	
+
 	/**
 	 * Returns the average length of messages
 	 */
