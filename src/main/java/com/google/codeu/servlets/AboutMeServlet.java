@@ -95,6 +95,7 @@ public class AboutMeServlet extends HttpServlet {
       name = newProfile.getName();
       username = newProfile.getUsername(); 
       interests = newProfile.getInterests();
+      profile_pic_URL = newProfile.getProfilePic();
 
     } 
 
@@ -110,6 +111,11 @@ public class AboutMeServlet extends HttpServlet {
 
     if(request.getParameter("user-interests") != null){
       interests =  Jsoup.clean(request.getParameter("user-interests"), Whitelist.none()) ; 
+
+    }
+    
+    if(request.getParameter("user-profile-pic") != null){
+      profile_pic_URL =  Jsoup.clean(request.getParameter("user-profile-pic"), Whitelist.none()) ; 
 
     }   
 
