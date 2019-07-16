@@ -117,6 +117,12 @@ public class AboutMeServlet extends HttpServlet {
     if(request.getParameter("user-profile-pic") != null){
       profile_pic_URL =  Jsoup.clean(request.getParameter("user-profile-pic"), Whitelist.none()) ; 
 
+      String regex = "(https?://\\S+\\.(png|jpg))";
+      String replacement = "<img src=\"$1\" />";
+      String textWithImagesReplaced = profile_pic_URL.replaceAll(regex, replacement);
+
+      profile_pic_URL = textWithImagesReplaced;
+
     }   
 
     Profile newProfile = new Profile(name, username, profile_pic_URL, interests, userEmail);
