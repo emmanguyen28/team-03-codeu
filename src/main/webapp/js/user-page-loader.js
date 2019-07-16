@@ -169,7 +169,7 @@ function fetchAboutMe(){
 				  nameContainer.innerHTML = new_name.name;
 				  userNameContainer.innerHTML = new_name.username;
 				  interestsContainer.innerHTML = new_name.interests;
-				  profilePicContainer.innerHTML = 'FAKITY FAKE FAKE PICITTY PIC';
+				  profilePicContainer.innerHTML = new_name.profile_pic;
 
 
 			}
