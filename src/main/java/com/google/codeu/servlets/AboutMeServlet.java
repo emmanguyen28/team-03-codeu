@@ -85,6 +85,7 @@ public class AboutMeServlet extends HttpServlet {
     String name = "";
     String username = "";
     String interests = "";
+    String profile_pic_URL = "profile pic from servlet";
 
 
 
@@ -112,7 +113,10 @@ public class AboutMeServlet extends HttpServlet {
 
     }   
 
-    Profile newProfile = new Profile(name, username, "", interests, userEmail);
+    Profile newProfile = new Profile(name, username, profile_pic_URL, interests, userEmail);
+    // public Profile(String name, String username, String profile_pic_URL, String interests, String email) {
+
+
 
     datastore.storeUser(newProfile);
 
