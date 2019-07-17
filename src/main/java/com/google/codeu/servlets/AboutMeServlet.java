@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
-import com.google.codeu.data.User;
 import com.google.codeu.data.Profile;
 
 import com.google.codeu.servlets.MessageServlet;
