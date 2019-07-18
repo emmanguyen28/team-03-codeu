@@ -1,12 +1,7 @@
-const urlParams = new URLSearchParams(window.location.search);
-const parameterTag= urlParams.get('tag');
-
-System.out.println(parameterTag); 
-
 // fetch messages and add them to the page 
 // by default, fetch uses GET 
 function fetchMessages() {
-	const url = '/feed?tag=' + parameterTag;
+	const url = '/feed';
 	fetch(url).then((response) => {
 		console.log(response);
 		return response.json(); // parse the returned json  
@@ -52,16 +47,6 @@ function buildMessageDiv(message) {
 
 	const message_li = document.createElement('li');
 	message_li.classList.add('list-group-item');
-
-	var messageText = convertImageAddressToAnchorTag(message.text);
-
-	const tag_li = document.createElement('li');
-	tag_li.classList.add('list-group-item');
-	if (message.tag == '') {
-		message.tag = 'None'; 
-	}
-	tag_li.appendChild(document.createTextNode("Tag: " + message.tag));
-	card_list.appendChild(tag_li);
 
 	const text_div = document.createElement('div');
 	text_div.innerHTML = convertImageAddressToAnchorTag(message.text);

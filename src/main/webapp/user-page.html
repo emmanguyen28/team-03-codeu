@@ -29,7 +29,7 @@ limitations under the License.
 </head>
 
 <body onload="buildUI();" onload="addLoginOrLogoutLinkToNavigation();">
-
+  
   <nav>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -47,32 +47,12 @@ limitations under the License.
       </div>
     </nav>
   </nav>
-  <h1 id="page-title">User Page</h1>
-
-  <div id="create-conversation-topic-div" style="text-align: center">
-    <form id="conversation-topic-form" method="POST">
-      <p style="padding-left: 180px;">Create a conversation topic chatroom:</p>
-      <div style="padding-left: 220px">
-        <input type="text" name="conversationTopicTitle"></input>
-      </div>
-    </form>
-    <hr />
-    <div style="text-align: center;">
-      <button>Create</button>
-    </div>
-  </div>
-
-  <p style="padding-left: 180px;">OR</p>
 
   <h1 id="page-title">User Page</h1>
   <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
     <p style="padding-left: 180px;">Enter a new message:</p>
     <br />
     <textarea name="text" id="message-input"></textarea>
-    <br>
-    <div style="padding-left: 220px">
-      Tag: <input type='text' name="tag">
-    </div>
     <br />
     <div class="container centered">
       <p>Upload image</p>
