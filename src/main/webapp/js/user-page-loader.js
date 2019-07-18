@@ -45,7 +45,8 @@ function showMessageFormIfViewingSelf() {
 		});
 }
 
-/* Fetches the Blobstore URL (where the image will be stored) then displays the form */
+/* Fetches the Blobstore URL (where the image will be stored) then displays the form 
+then proceed to store new message*/
 function fetchBlobstoreUrlAndShowForm() {
 	fetch('/blobstore-upload-url')
 		.then((response) => {
