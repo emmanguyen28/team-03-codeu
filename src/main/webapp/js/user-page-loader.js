@@ -92,31 +92,69 @@ function fetchMessages() {
  * @return {Element}
  */
 function buildMessageDiv(message) {
-	
-	const wrapper = document.createElement('div'); 
-    wrapper.classList.add('card');
-    wrapper.style = 'width: 70rem'; 
+	// console.log('user-page-loader.js -- buildMessageDiv');
+	// const headerDiv = document.createElement('div');
+	// headerDiv.classList.add('message-header');
+	// headerDiv.appendChild(document.createTextNode(
+	// message.user + ' - ' + new Date(message.timestamp)));
 
-    const inner_wrapper = document.createElement('div'); 
-    inner_wrapper.classList.add('card-body'); 
-    wrapper.appendChild(inner_wrapper); 
+	// const bodyDiv = document.createElement('div');
+	// bodyDiv.classList.add('message-body');
+	// var messageText = message.text;
+	// bodyDiv.innerHTML = replaceImageAddressWithHTML(messageText);
 
-    const card_title = document.createElement('h4');
-    card_title.classList.add('card-title'); 
-    card_title.appendChild(document.createTextNode(message.user)); 
-    inner_wrapper.appendChild(card_title); 
+	// console.log(message.imageUrl);
+	// const imageUrl = message.imageUrl;
 
-    const card_list = document.createElement('ul');
-    card_list.classList.add('list-group');
-    card_list.classList.add('list-group-flush'); 
-    wrapper.appendChild(card_list); 
+	// // 1st check checks for null, undefined, empty strings
+	// // 2nd check check if string is made up  of only white spaces
+	// if (Boolean(imageUrl) && !!imageUrl.trim()) {
+	// 	console.log('inside if');
+	// 	const image = document.createElement('img');
+	// 	image.src = imageUrl;
+	// 	console.log(image);
+	// 	bodyDiv.appendChild(image);
+	// }
 
-    const time_li = document.createElement('li'); 
-    time_li.classList.add('list-group-item'); 
-    time_li.appendChild(document.createTextNode(new Date(message.timestamp))); 
-    card_list.appendChild(time_li);
+	// const messageDiv = document.createElement('div');
+	// messageDiv.classList.add('message-div');
+	// messageDiv.appendChild(headerDiv);
+	// messageDiv.appendChild(bodyDiv);
 
-    const message_li = document.createElement('li'); 
+	// return messageDiv;
+
+	const wrapper = document.createElement('div');
+	wrapper.classList.add('card');
+	wrapper.style = 'width: 70rem';
+
+	const inner_wrapper = document.createElement('div');
+	inner_wrapper.classList.add('card-body');
+	wrapper.appendChild(inner_wrapper);
+
+	const card_title = document.createElement('h4');
+	card_title.classList.add('card-title');
+	card_title.appendChild(document.createTextNode(message.user));
+	inner_wrapper.appendChild(card_title);
+
+	const card_list = document.createElement('ul');
+	card_list.classList.add('list-group');
+	card_list.classList.add('list-group-flush');
+	wrapper.appendChild(card_list);
+
+	const time_li = document.createElement('li');
+	time_li.classList.add('list-group-item');
+	time_li.appendChild(document.createTextNode(new Date(message.timestamp)));
+	card_list.appendChild(time_li);
+
+	const tag_li = document.createElement('li');
+	tag_li.classList.add('list-group-item');
+	if (message.tag == '') {
+		message.tag = 'None'; 
+	}
+	tag_li.appendChild(document.createTextNode("Tag: " + message.tag));
+	card_list.appendChild(tag_li);
+
+	const message_li = document.createElement('li'); 
 	message_li.classList.add('list-group-item');
 
 	const text_div = document.createElement('div');
@@ -136,7 +174,7 @@ function buildMessageDiv(message) {
 
     card_list.appendChild(message_li); 
 
-    return wrapper;
+	return wrapper;
 }
 
 /** Replace image links with the img HTML tag*/
