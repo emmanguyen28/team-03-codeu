@@ -55,6 +55,45 @@ public class Datastore {
 		datastore.put(messageEntity);
 	}
 
+	/** Stores the User in Datastore. */
+	public void storeUser(Profile user) {
+		Entity userEntity = new Entity("Profile", user.getEmail());
+		userEntity.setProperty("name", user.getName());
+		userEntity.setProperty("username", user.getUsername());
+		userEntity.setProperty("profile_pic", user.getProfilePic());
+		userEntity.setProperty("interests", user.getInterests());
+		userEntity.setProperty("email", user.getEmail());
+		
+		datastore.put(userEntity);
+	}
+
+	
+	   
+	   /**
+		* Returns the User owned by the email address, or
+		* null if no matching User was found.
+		*/
+	   public Profile getUser(String email) {
+	   
+		Query query = new Query("Profile")
+		  .setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, email));
+		PreparedQuery results = datastore.prepare(query);
+		Entity userEntity = results.asSingleEntity();
+		if(userEntity == null) {
+		 return null;
+		}
+		
+
+		String name = (String) userEntity.getProperty("name");
+		String username = (String) userEntity.getProperty("username");
+		String profile_pic = (String) userEntity.getProperty("profile_pic");
+		String interests = (String) userEntity.getProperty("interests");
+
+		Profile user = new Profile(name, username, profile_pic, interests, email) ;
+
+		return user;
+	   }
+
 	/** Stores conversation topic in Datastore. */
 	public void storeConversationTopic(ConversationTopic conversationTopic) {
 		System.out.println("storing conversation topic");

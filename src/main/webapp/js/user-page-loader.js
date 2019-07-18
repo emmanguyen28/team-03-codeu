@@ -38,9 +38,12 @@ function showMessageFormIfViewingSelf() {
 			return response.json();
 		})
 		.then((loginStatus) => {
+			document.getElementById('about-me-form').classList.remove('hidden');
 			if (loginStatus.isLoggedIn &&
 				loginStatus.username == parameterUsername) {
 				fetchBlobstoreUrlAndShowForm();
+				
+
 			}
 		});
 }
@@ -182,10 +185,45 @@ function convertImageAddressToAnchorTag(text) {
 	console.log(result);
 	return result;
 }
+/** fetches about me  */
+function fetchAboutMe(){
+	const url = '/about?user=' + parameterUsername;
+	fetch(url).
+		then((response) => {
+	  return response.json();
+	}).then((new_name) => {
 
+		const nameContainer = document.getElementById('name-container');
+		const userNameContainer = document.getElementById('username-container');
+		const interestsContainer = document.getElementById('interests-container');
+		const profilePicContainer = document.getElementById('profile-pic-container');
+		if (new_name){
+			if (new_name.length == 0) {
+				nameContainer.innerHTML = 'Please enter name ';
+			} else{
+	
+				console.log(new_name);
+		  
+				  nameContainer.innerHTML = new_name.name;
+				  userNameContainer.innerHTML = new_name.username;
+				  interestsContainer.innerHTML = new_name.interests;
+				  profilePicContainer.innerHTML = new_name.profile_pic;
+
+
+			}
+	
+		} else{
+			nameContainer.innerHTML = 'Please enter name ';
+		}
+		
+		
+  
+	});
+  }
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
-	setPageTitle();
+	//setPageTitle();
 	showMessageFormIfViewingSelf();
 	fetchMessages();
+	fetchAboutMe();
 }

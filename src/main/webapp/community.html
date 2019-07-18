@@ -1,8 +1,14 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Community Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/main.css">
@@ -24,25 +30,23 @@
           const userListItem = buildUserListItem(user);
           list.appendChild(userListItem);
         });
-      });
-    }
+      })};
 
-    /**
-     * Builds a list element that contains a link to a user page, e.g.
-     * <li><a href="/user-page.html?user=test@example.com">test@example.com</a></li>
-     */
-    function buildUserListItem(user) {
-      const userLink = document.createElement('a');
-      userLink.setAttribute('href', '/user-page.html?user=' + user);
-      userLink.appendChild(document.createTextNode(user));
-      const userListItem = document.createElement('li');
-      userListItem.className = "list-group-item mw-40";
-      userListItem.appendChild(userLink);
-      return userListItem;
-    }
+      /**
+       * Builds a list element that contains a link to a user page, e.g.
+       * <li><a href="/user-page.html?user=test@example.com">test@example.com</a></li>
+       */
+      function buildUserListItem(user){
+        const userLink = document.createElement('a');
+        userLink.setAttribute('href', '/user-page.html?user=' + user);
+        userLink.appendChild(document.createTextNode(user));
+        const userListItem = document.createElement('li');
+        userListItem.appendChild(userLink);
+        return userListItem;
+      }
 
-    /** Fetches data and populates the UI of the page. */
-    function buildUI() {
+      /** Fetches data and populates the UI of the page. */
+    function buildUI(){
       fetchUserList();
     }
   </script>
@@ -64,7 +68,7 @@
         </ul>
       </div>
     </nav>
-  </div>
+  
   <div>
     <h1>Community Page</h1>
     <div id="content">

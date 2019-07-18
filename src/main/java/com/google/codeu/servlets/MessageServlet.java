@@ -84,8 +84,7 @@ public class MessageServlet extends HttpServlet {
 			response.sendRedirect("/index.html");
 			return;
 		}
-
-		String user = userService.getCurrentUser().getEmail();
+    String user = userService.getCurrentUser().getEmail();
 		String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrls = getUploadedFileUrl(request, "image");

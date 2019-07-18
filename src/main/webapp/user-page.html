@@ -46,25 +46,55 @@ limitations under the License.
         </ul>
       </div>
     </nav>
-  </nav>
-  <h1 id="page-title">User Page</h1>
+    
+    <h1 id="page-title">User Page</h1>
 
-  <div id="create-conversation-topic-div" style="text-align: center">
-    <form id="conversation-topic-form" method="POST">
-      <p style="padding-left: 180px;">Create a conversation topic chatroom:</p>
-      <div style="padding-left: 220px">
-        <input type="text" name="conversationTopicTitle"></input>
-      </div>
-    </form>
-    <hr />
-    <div style="text-align: center;">
-      <button>Create</button>
+  
+    <h2 id="name-container">Loading...</h2>
+
+    <div id="about-me-form" class="hidden">
+      <form action="/about" method="POST">
+        <textarea name="user-name" placeholder="Update your name here" rows=4 required></textarea>
+        <br/>
+        <input type="submit" value="Submit">
+      </form>
     </div>
-  </div>
 
-  <p style="padding-left: 180px;">OR</p>
+    <h2 id="username-container">Loading...</h2>
+
+
+    <div >
+      <form action="/about" method="POST">
+        <textarea name="user-username" placeholder="Update your username here" rows=4 required></textarea>
+        <br/>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <h2 id="interests-container">Loading...</h2>
+
+
+    <div >
+      <form action="/about" method="POST">
+        <textarea name="user-interests" placeholder="List your interests here" rows=4 required></textarea>
+        <br/>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <h2 id='profile-pic-container'>Loading profile pic from Datastore</h2>
+
+    <div >
+      <form action="/about" method="POST">
+        <textarea name="user-profile-pic" placeholder="Upload the URL you'd like to use for your profile pic" rows=4 required></textarea>
+        <br/>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
 
   <h1 id="page-title">User Page</h1>
+    
+  <h1 >User Messages</h1>
   <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
     <p style="padding-left: 180px;">Enter a new message:</p>
     <br />
@@ -81,7 +111,7 @@ limitations under the License.
       <input id="submitMessageButton" type="submit" value="Submit">
     </div>
   </form>
-  <hr />
+  <br />
 
   <div id="message-container">Loading...</div>
 
