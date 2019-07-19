@@ -26,6 +26,7 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.codeu.data.ConversationTopic;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
 import com.google.gson.Gson;
@@ -91,6 +92,7 @@ public class MessageServlet extends HttpServlet {
 		String imageUrls = getUploadedFileUrl(request, "image");
 
 		String conversationTopicId = request.getParameter("conversationTopicId");
+		String conversationTopicTitle = request.getParameter("conversationTopicTitle");
 		System.out.println("inside messageServlet " + request.getParameter("conversationTopicId"));
 
 		// if imageUrls is null, it's saved like that. Will be taken care of on the
@@ -100,7 +102,7 @@ public class MessageServlet extends HttpServlet {
 
 		// if message has conversation topic id, then just reload page
 		if (conversationTopicId != null) {
-			response.sendRedirect("/single-conversation-topic.html?id=" + conversationTopicId);
+			response.sendRedirect("/single-conversation-topic.html?id=" + conversationTopicId + "&title=" + conversationTopicTitle);
 		} else {
 			response.sendRedirect("/user-page.html?user=" + user);
 		}
@@ -122,20 +124,20 @@ public class MessageServlet extends HttpServlet {
 
 		// User submitted form without selecting a file, so we can't get a URL.
 		// (DEVSERVER)
-		if (blobKeys == null || blobKeys.isEmpty()) {
-			return null;
-		}
+		// if (blobKeys == null || blobKeys.isEmpty()) {
+		// 	return null;
+		// }
 
 		// Our form only contains a single file input, so get the first index.
 		BlobKey blobKey = blobKeys.get(0);
 
 		// User submitted form without selecting a file, so we can't get a URL.
 		// (LIVE SERVER)
-		// BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-		// if (blobInfo.getSize() == 0) {
-		// 	blobstoreService.delete(blobKey);
-		// 	return null;
-		// }
+		BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+		if (blobInfo.getSize() == 0) {
+			blobstoreService.delete(blobKey);
+			return null;
+		}
 
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 		ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);

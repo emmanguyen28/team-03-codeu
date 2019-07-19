@@ -98,3 +98,7 @@ body {
 #message-container ul li {
   word-break: break-all; 
 }
+
+td {
+  padding: 5px 25px;
+}
