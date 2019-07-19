@@ -38,7 +38,7 @@ public class Message {
   }
 
   public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag) {
-    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), null, "", null); // imageUrl is null if user didn't upload an image
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, tag, null); // imageUrl is null if user didn't upload an image
   }
   
   public Message(String user, String text, String imageUrl) {
@@ -48,8 +48,11 @@ public class Message {
   public Message(String user, String text, String imageUrl, String conversationTopicId) {
     this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl,"", conversationTopicId);
   }
-  public Message(String user, String text, String imageUrl, String String conversationTopicId) {
-    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl,"", conversationTopicId);
+  
+
+  public Message( String user, String text, String imageUrl, String tag, String conversationTopicId){
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, tag, conversationTopicId);
+
   }
 
   public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag, String conversationTopicId) {
