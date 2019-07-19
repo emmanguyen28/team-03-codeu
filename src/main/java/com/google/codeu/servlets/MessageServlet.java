@@ -98,6 +98,7 @@ public class MessageServlet extends HttpServlet {
 		
 
 		String conversationTopicId = Jsoup.clean(request.getParameter("conversationTopicId"), Whitelist.none()); 
+		System.out.println(conversationTopicId);
 
 		Message message = new Message( user, text, imageUrls, tag, conversationTopicId);
 

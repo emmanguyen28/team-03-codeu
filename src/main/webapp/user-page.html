@@ -53,7 +53,7 @@ limitations under the License.
   
     <h2 id="name-container">Loading...</h2>
 
-    <div id="about-me-form" class="hidden">
+    <div class="form-group" class="hidden">
       <form action="/about" method="POST">
         <textarea name="user-name" placeholder="Update your name here" rows=4 required></textarea>
         <br/>
@@ -64,7 +64,7 @@ limitations under the License.
     <h2 id="username-container">Loading...</h2>
 
 
-    <div >
+    <div class="form-group">
       <form action="/about" method="POST">
         <textarea name="user-username" placeholder="Update your username here" rows=4 required></textarea>
         <br/>
@@ -75,7 +75,7 @@ limitations under the License.
     <h2 id="interests-container">Loading...</h2>
 
 
-    <div >
+    <div class="form-group">
       <form action="/about" method="POST">
         <textarea name="user-interests" placeholder="List your interests here" rows=4 required></textarea>
         <br/>
@@ -85,7 +85,7 @@ limitations under the License.
 
     <h2 id='profile-pic-container'>Loading profile pic from Datastore</h2>
 
-    <div >
+    <div class="form-group">
       <form action="/about" method="POST">
         <textarea name="user-profile-pic" placeholder="Upload the URL you'd like to use for your profile pic" rows=4 required></textarea>
         <br/>
@@ -97,7 +97,7 @@ limitations under the License.
     
 
   <h1 >User Messages</h1>
-  <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
+  <form class="form-group" id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
     <p style="padding-left: 180px;">Enter a new message:</p>
     <br />
     <textarea name="text" id="message-input"></textarea>
