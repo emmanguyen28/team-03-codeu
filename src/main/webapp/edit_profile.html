@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <script src="/js/user-page-loader.js"></script>
+  </head>
+  <body onload='fetchProfile()'>
+    <h1>Edit Profile</h1>
+    <p>Edit name:</p>
+
+    <form method="POST" action="/about">
+      <textarea name="name"></textarea>
+      <br/>
+      <button>Submit</button>
+    </form>
+    <p>Edit username:</p>
+    <form method="POST" action="/about">
+        <textarea name="username"></textarea>
+        <br/>
+        <button>Submit</button>
+      </form>
+    <p>Edit interests:</p>
+    <form method="POST" action="/about">
+        <textarea name="interests"></textarea>
+        <br/>
+        <button>Submit</button>
+      </form>
+    <p id='name-container'>Loading name from Datastore </p>
+    <p id='username-container'>Loading username from Datastore</p>
+    <p id='interests-container'>Loading interests from Datastore</p>
+    <p id='profile-pic-container'>Loading interests from Datastore</p>
+
+
+  </body>
+</html>

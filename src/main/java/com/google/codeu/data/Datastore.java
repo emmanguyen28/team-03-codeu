@@ -48,10 +48,51 @@ public class Datastore {
 		messageEntity.setProperty("text", message.getText());
 		messageEntity.setProperty("timestamp", message.getTimestamp());
 		messageEntity.setProperty("imageUrl", message.getImageUrl());
-		messageEntity.setProperty("conversationTopicId", message.getConversationTopicId());
+		messageEntity.setProperty("tag", message.getTag());
+		messageEntity.setProperty("conversationTopic", message.getConversationTopicId());
+
 
 		datastore.put(messageEntity);
 	}
+
+	/** Stores the User in Datastore. */
+	public void storeUser(Profile user) {
+		Entity userEntity = new Entity("Profile", user.getEmail());
+		userEntity.setProperty("name", user.getName());
+		userEntity.setProperty("username", user.getUsername());
+		userEntity.setProperty("profile_pic", user.getProfilePic());
+		userEntity.setProperty("interests", user.getInterests());
+		userEntity.setProperty("email", user.getEmail());
+		
+		datastore.put(userEntity);
+	}
+
+	
+	   
+	   /**
+		* Returns the User owned by the email address, or
+		* null if no matching User was found.
+		*/
+	   public Profile getUser(String email) {
+	   
+		Query query = new Query("Profile")
+		  .setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, email));
+		PreparedQuery results = datastore.prepare(query);
+		Entity userEntity = results.asSingleEntity();
+		if(userEntity == null) {
+		 return null;
+		}
+		
+
+		String name = (String) userEntity.getProperty("name");
+		String username = (String) userEntity.getProperty("username");
+		String profile_pic = (String) userEntity.getProperty("profile_pic");
+		String interests = (String) userEntity.getProperty("interests");
+
+		Profile user = new Profile(name, username, profile_pic, interests, email) ;
+
+		return user;
+	   }
 
 	/** Stores conversation topic in Datastore. */
 	public void storeConversationTopic(ConversationTopic conversationTopic) {
@@ -85,10 +126,11 @@ public class Datastore {
 				String text = (String) entity.getProperty("text");
 				long timestamp = (long) entity.getProperty("timestamp");
 				String imageUrl = (String) entity.getProperty("imageUrl");
+				String tag = (String) entity.getProperty("tag");
 				String conversationTopicId = (String) entity.getProperty("conversationTopicId");
-				System.out.println(conversationTopicId);
 
-				Message message = new Message(id, user, text, timestamp, imageUrl, conversationTopicId);
+				Message message = new Message(id, user, text, timestamp, imageUrl, tag, conversationTopicId);
+
 				messages.add(message);
 			} catch (Exception e) {
 				System.err.println(String.format("Error reading message: [%s]", entity.toString()));
@@ -119,7 +161,21 @@ public class Datastore {
 	}
 
 	/**
-	 * Get all messages from all users (including messages in chatrooms)
+
+	 * Get all messages with specified tag
+	 * @param tag
+	 * @return a list of messages with specified tag
+	 */
+	public List<Message> getAllMessagesWithTag(String tag) {
+		Query query = new Query("Message").setFilter(new Query.FilterPredicate("tag", FilterOperator.EQUAL, tag)).addSort("timestamp", SortDirection.DESCENDING); 
+		
+		return getQueryMessages(query); 
+
+	}
+
+	/**
+	 * Get all messages from all users
+
 	 */
 	public List<Message> getAllMessages() {
 		Query query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);

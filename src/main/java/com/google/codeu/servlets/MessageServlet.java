@@ -85,8 +85,7 @@ public class MessageServlet extends HttpServlet {
 			response.sendRedirect("/index.html");
 			return;
 		}
-
-		String user = userService.getCurrentUser().getEmail();
+    String user = userService.getCurrentUser().getEmail();
 		String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrls = getUploadedFileUrl(request, "image");
@@ -94,10 +93,13 @@ public class MessageServlet extends HttpServlet {
 		String conversationTopicId = request.getParameter("conversationTopicId");
 		String conversationTopicTitle = request.getParameter("conversationTopicTitle");
 		System.out.println("inside messageServlet " + request.getParameter("conversationTopicId"));
-
-		// if imageUrls is null, it's saved like that. Will be taken care of on the
-		// front end
+    
+		String tag = Jsoup.clean(request.getParameter("tag"), Whitelist.none()); 
+		System.out.println(imageUrls);
+		
+		// if imageUrls is null, it's saved like that. Will be taken care of on the front end
 		Message message = new Message(user, text, imageUrls, conversationTopicId);
+
 		datastore.storeMessage(message);
 
 		// if message has conversation topic id, then just reload page
