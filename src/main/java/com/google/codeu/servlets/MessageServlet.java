@@ -99,7 +99,7 @@ public class MessageServlet extends HttpServlet {
 
 		String conversationTopicId = Jsoup.clean(request.getParameter("conversationTopicId"), Whitelist.none()); 
 
-		Message message = new Message( user, text, imageUrl, tag, conversationTopicId);
+		Message message = new Message( user, text, imageUrls, tag, conversationTopicId);
 
 		datastore.storeMessage(message);
 
