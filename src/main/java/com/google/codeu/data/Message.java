@@ -48,6 +48,9 @@ public class Message {
   public Message(String user, String text, String imageUrl, String conversationTopicId) {
     this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl,"", conversationTopicId);
   }
+  public Message(String user, String text, String imageUrl, String String conversationTopicId) {
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl,"", conversationTopicId);
+  }
 
   public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag, String conversationTopicId) {
     this.id = id;

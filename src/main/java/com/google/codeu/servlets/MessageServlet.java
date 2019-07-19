@@ -84,8 +84,10 @@ public class MessageServlet extends HttpServlet {
 			response.sendRedirect("/index.html");
 			return;
 		}
-    String user = userService.getCurrentUser().getEmail();
+		
+		String user = userService.getCurrentUser().getEmail();
 		String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+		
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrls = getUploadedFileUrl(request, "image");
 
@@ -93,7 +95,11 @@ public class MessageServlet extends HttpServlet {
 		System.out.println(imageUrls);
 		
 		// if imageUrls is null, it's saved like that. Will be taken care of on the front end
-		Message message = new Message(user, text, imageUrls, tag.toLowerCase());
+		
+
+		String conversationTopicId = Jsoup.clean(request.getParameter("conversationTopicId"), Whitelist.none()); 
+
+		Message message = new Message( user, text, imageUrl, tag, conversationTopicId);
 
 		datastore.storeMessage(message);
 
