@@ -38,7 +38,6 @@ function showMessageFormIfViewingSelf() {
 			return response.json();
 		})
 		.then((loginStatus) => {
-			document.getElementById('about-me-form').classList.remove('hidden');
 			if (loginStatus.isLoggedIn &&
 				loginStatus.username == parameterUsername) {
 				fetchBlobstoreUrlAndShowForm();
