@@ -176,11 +176,23 @@ public class Datastore {
 		return getQueryMessages(query);
 	}
 
+	/**
+	 * Get the messages for the conversation topic matching the id passed as parameter
+	 */
 	public List<Message> getConversationTopicMessages(String id) {
 		Filter conversationTopicFilter = new Query.FilterPredicate("conversationTopicId", FilterOperator.EQUAL, id);
 		Query query = new Query("Message").setFilter(conversationTopicFilter).addSort("timestamp",
 				SortDirection.ASCENDING);
 		return getQueryMessages(query);
+	}
+
+	/**
+	 * Get the conversation topic object matching the id passed as parameter
+	 */
+	public ConversationTopic getConversationTopic(String id) {
+		Filter idFilter = new Query.FilterPredicate("id", FilterOperator.EQUAL, id);
+		Query query = new Query("ConversationTopic").setFilter(idFilter);
+		return getQueryConversationTopics(query).get(0);
 	}
 
 	/**
