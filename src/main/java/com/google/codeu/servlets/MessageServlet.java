@@ -87,10 +87,14 @@ public class MessageServlet extends HttpServlet {
 		}
 		String user = userService.getCurrentUser().getEmail();
 		String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
-		
+		String tag; 
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrls = getUploadedFileUrl(request, "image");
-		String tag = Jsoup.clean(request.getParameter("tag"), Whitelist.none()); 
+		if (request.getParameter("tag") != null) {
+			tag = Jsoup.clean(request.getParameter("tag"), Whitelist.none());
+		} else {
+			tag = ""; 
+		}
 		String conversationTopicId = request.getParameter("conversationTopicId");
 		String conversationTopicTitle = request.getParameter("conversationTopicTitle");
 		System.out.println("inside messageServlet " + request.getParameter("conversationTopicId"));
