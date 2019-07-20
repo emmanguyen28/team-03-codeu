@@ -49,6 +49,7 @@ public class Datastore {
 		messageEntity.setProperty("timestamp", message.getTimestamp());
 		messageEntity.setProperty("imageUrl", message.getImageUrl());
 		messageEntity.setProperty("conversationTopicId", message.getConversationTopicId());
+		messageEntity.setProperty("tag", message.getTag()); 
 
 		datastore.put(messageEntity);
 	}
@@ -124,10 +125,11 @@ public class Datastore {
 				String text = (String) entity.getProperty("text");
 				long timestamp = (long) entity.getProperty("timestamp");
 				String imageUrl = (String) entity.getProperty("imageUrl");
+				String tag = (String) entity.getProperty("tag");
 				String conversationTopicId = (String) entity.getProperty("conversationTopicId");
 				System.out.println(conversationTopicId);
 
-				Message message = new Message(id, user, text, timestamp, imageUrl, conversationTopicId);
+				Message message = new Message(id, user, text, timestamp, imageUrl, tag, conversationTopicId);
 				messages.add(message);
 			} catch (Exception e) {
 				System.err.println(String.format("Error reading message: [%s]", entity.toString()));
@@ -155,6 +157,17 @@ public class Datastore {
 				SortDirection.DESCENDING);
 
 		return getQueryMessages(query);
+	}
+
+	/**
+	 * Get all messages with specified tag
+	 * @param tag
+	 * @return a list of messages with specified tag
+	 */
+	public List<Message> getAllMessagesWithTag(String tag) {
+		Query query = new Query("Message").setFilter(new Query.FilterPredicate("tag", FilterOperator.EQUAL, tag)).addSort("timestamp", SortDirection.DESCENDING); 
+		
+		return getQueryMessages(query); 
 	}
 
 	/**

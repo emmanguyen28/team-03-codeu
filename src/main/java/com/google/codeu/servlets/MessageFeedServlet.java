@@ -34,16 +34,15 @@ public class MessageFeedServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
 
-
 		// first, check if a tag is provided
         String tag = request.getParameter("tag");
         
         List<Message> messages = datastore.getAllMessages(); 
 
-
-		// if (!tag.equals("null") && tag.length() > 0) {
-        //     messages = datastore.getAllMessagesWithTag(tag.toLowerCase());
-        // }
+		if (!tag.equals("null") && tag.length() > 0) {
+            messages = datastore.getAllMessagesWithTag(tag.toLowerCase());
+        }
+        
 		// get a list of the user's messages using the Datastore API
 		Gson gson = new Gson(); 
         String json = gson.toJson(messages); 

@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Community Page</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -30,23 +29,35 @@
           const userListItem = buildUserListItem(user);
           list.appendChild(userListItem);
         });
-      })};
+      })
+    };
 
-      /**
-       * Builds a list element that contains a link to a user page, e.g.
-       * <li><a href="/user-page.html?user=test@example.com">test@example.com</a></li>
-       */
-      function buildUserListItem(user){
-        const userLink = document.createElement('a');
-        userLink.setAttribute('href', '/user-page.html?user=' + user);
-        userLink.appendChild(document.createTextNode(user));
-        const userListItem = document.createElement('li');
-        userListItem.appendChild(userLink);
-        return userListItem;
-      }
+    /**
+     * Builds a list element that contains a link to a user page, e.g.
+     * <li><a href="/user-page.html?user=test@example.com">test@example.com</a></li>
+     */
+    function buildUserListItem(user) {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('card');
+      wrapper.style = 'width: 70rem';
 
-      /** Fetches data and populates the UI of the page. */
-    function buildUI(){
+      const inner_wrapper = document.createElement('div');
+      inner_wrapper.classList.add('card-body');
+      wrapper.appendChild(inner_wrapper); 
+
+      const userLink = document.createElement('a');
+      userLink.setAttribute('href', '/user-page.html?user=' + user);
+      userLink.appendChild(document.createTextNode(user));
+      inner_wrapper.appendChild(userLink);
+
+      const userListItem = document.createElement('li');
+      userListItem.appendChild(wrapper);
+
+      return userListItem;
+    }
+
+    /** Fetches data and populates the UI of the page. */
+    function buildUI() {
       fetchUserList();
     }
   </script>
@@ -54,10 +65,10 @@
 
 <body onload="buildUI(); addLoginOrLogoutLinkToNavigation()">
   <div class="container-fluid">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-light" style="background-color: #00a8eb;" id="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">SportsPal</a>
+          <a class="navbar-brand" style="color: black;" href="/">SportsPal</a>
         </div>
         <ul class="nav navbar-nav" id="navigation">
           <li><a href="/aboutus.html">About Our Team</a></li>
@@ -68,14 +79,14 @@
         </ul>
       </div>
     </nav>
-  
-  <div>
-    <h1>Community Page</h1>
-    <div id="content">
-      <p style="text-align: center">Here is a list of every user who has posted a message:</p>
-      <ul id="list" class="list-group">Loading...</ul>
+
+    <div>
+      <h1>Community Page</h1>
+      <div id="content">
+        <p style="text-align: center">Here is a list of every user who has posted a message:</p>
+        <ul id="list" class="list-group">Loading...</ul>
+      </div>
     </div>
-  </div>
 </body>
 
 </html>

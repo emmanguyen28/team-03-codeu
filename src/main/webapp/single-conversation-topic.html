@@ -28,24 +28,21 @@ limitations under the License.
     <script src="./js/single-conversation-topic.js"></script>
 </head>
 
-<body onload="buildUI(); addLoginOrLogoutLinkToNavigation()">
-    <nav>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">SportsPal</a>
-                </div>
-                <ul class="nav navbar-nav" id="navigation">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/aboutus.html">About Our Team</a></li>
-                    <li><a href="/community.html">Community</a></li>
-                    <li><a href="/feed.html">Feed</a></li>
-                    <li><a href="/stats.html">Stats</a></li>
-                    <li><a href="/conversation-topics.html">Conversation Topics</a></li>
-                </ul>
-            </div>
-        </nav>
-
+<body onload="buildUI()">
+    <nav class="navbar navbar-light" style="background-color: #00a8eb;" id="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" style="color: black;" href="/">SportsPal</a>
+          </div>
+          <ul class="nav navbar-nav" id="navigation">
+            <li><a href="/aboutus.html">About Our Team</a></li>
+            <li><a href="/community.html">Community</a></li>
+            <li><a href="/feed.html">Feed</a></li>
+            <li><a href="/stats.html">Stats</a></li>
+            <li><a href="/conversation-topics.html">Conversation Topics</a></li>
+          </ul>
+        </div>
+      </nav>
         <div class="container-fluid">
             <div id="conversation-topic-container">
                 <div id="conversation-topic-div">
@@ -58,7 +55,7 @@ limitations under the License.
                     <form id="single-conversation-topic-form" class="hidden" method="POST" enctype="multipart/form-data">
                         <div id="conversation-topic-input-message-div">
                             <textarea name="text"></textarea>
-                            <button type="submit" value="submit">Submit</button>
+                            <button class="btn btn-info" type="submit" value="submit">Submit</button>
                         </div>
                     </form>
 
