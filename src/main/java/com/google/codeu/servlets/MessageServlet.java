@@ -91,15 +91,12 @@ public class MessageServlet extends HttpServlet {
 		String imageUrls = getUploadedFileUrl(request, "image");
 
 		String conversationTopicId = request.getParameter("conversationTopicId");
-		String conversationTopicTitle = request.getParameter("conversationTopicTitle");
 		System.out.println("inside messageServlet " + request.getParameter("conversationTopicId"));
     
-		String tag = Jsoup.clean(request.getParameter("tag"), Whitelist.none()); 
 		System.out.println(imageUrls);
 		
-		// if imageUrls is null, it's saved like that. Will be taken care of on the front end
+		// if imageUrls is null, it's saved like that. Will be taken care of on the
 		Message message = new Message(user, text, imageUrls, conversationTopicId);
-
 		datastore.storeMessage(message);
 
 		// if message has conversation topic id, then just reload page
