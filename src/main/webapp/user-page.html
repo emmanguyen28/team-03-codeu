@@ -43,75 +43,84 @@ limitations under the License.
       </ul>
     </div>
   </nav>
-    
-    <h1 id="page-title">User Page</h1>
 
-  
-    <h2 id="name-container">Loading...</h2>
+  <h1 id="page-title">My Profile Page</h1>
 
-    <div id="about-me-form" class="hidden">
-      <form action="/about" method="POST">
-        <textarea name="user-name" placeholder="Update your name here" rows=4 required></textarea>
-        <br/>
-        <input type="submit" value="Submit">
-      </form>
+  <div class="container">
+    <div class="form-group row">
+      <label id="name-container" class="col-sm-2 col-form-label">Update your name</label>
+      <div class="col-sm-10">
+        <div class="form-group" class="hidden">
+          <form action="/about" method="POST">
+            <textarea name="user-name" class="form-control" placeholder="Update your name here" rows=4
+              required></textarea>
+            <input class="btn btn-info" style="margin-top:10px;" type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label id="username-container" class="col-sm-2 col-form-label">Please create a username</label>
+
+      <div class="form-group col-sm-10">
+        <form action="/about" method="POST">
+          <textarea name="user-username" class="form-control" placeholder="Update your username here" rows=4
+            required></textarea>
+          <hr>
+          <input class="btn btn-info" style="margin-top:10px;" type="submit" value="Submit">
+        </form>
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label id="interests-container" class="col-sm-2 col-form-label">Please list some interests</label>
+      <div class="form-group col-sm-10">
+        <form action="/about" method="POST">
+          <textarea name="user-interests" class="form-control" placeholder="List your interests here" rows=4
+            required></textarea>
+          <input class="btn btn-info" style="margin-top:10px;" type="submit" value="Submit">
+        </form>
+      </div>
     </div>
 
-    <h2 id="username-container">Loading...</h2>
-
-
-    <div >
-      <form action="/about" method="POST">
-        <textarea name="user-username" placeholder="Update your username here" rows=4 required></textarea>
-        <br/>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-
-    <h2 id="interests-container">Loading...</h2>
-
-
-    <div >
-      <form action="/about" method="POST">
-        <textarea name="user-interests" placeholder="List your interests here" rows=4 required></textarea>
-        <br/>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-
-    <h2 id='profile-pic-container'>Loading profile pic from Datastore</h2>
-
-    <div >
-      <form action="/about" method="POST">
-        <textarea name="user-profile-pic" placeholder="Upload the URL you'd like to use for your profile pic" rows=4 required></textarea>
-        <br/>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-
-  <h1 id="page-title">User Page</h1>
-    
-  <h1 >User Messages</h1>
-  <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
-    <p style="padding-left: 180px;">Enter a new message:</p>
-    <br />
-    <textarea name="text" id="message-input"></textarea>
-    <br>
-    <div style="padding-left: 220px">
-      Tag: <input type='text' name="tag">
+    <div class="form-group row">
+      <label id="interests-container" class="col-sm-2 col-form-label">Please enter the url of your profile
+        picture</label>
+      <div class="form-group col-sm-10">
+        <form action="/about" method="POST">
+          <textarea name="user-profile-pic" class="form-control"
+            placeholder="Upload the URL you'd like to use for your profile pic" rows=4 required></textarea>
+          <input class="btn btn-info" style="margin-top:10px;" type="submit" value="Submit">
+        </form>
+      </div>
     </div>
     <br />
-    <div class="container centered">
-      <p>Upload image</p>
-      <input id="file-input" type="file" name="image">
-      <br>
-      <input id="submitMessageButton" type="submit" value="Submit">
+    <br/>
+    <br/>
+    <h1>My Messages</h1>
+    <br/>
+    <br/>
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label">Enter a new message: </label>
+      <div class="form-group col-sm-10">
+          <form id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
+            <div class="container">
+                <textarea name="text" id="message-input" style="padding-right: 30px;"></textarea>
+                <label class="col-form-label">Tag: </label>
+                <input type='text' name="tag">
+            </div>
+            <div class="form-group centered" style="text-align: center;">
+              <p>Upload image</p>
+              <input class="btn btn-info" style="margin-top:10px;" id="file-input" type="file" name="image">
+              <br>
+              <input class="btn btn-info" style="margin-top:10px;" id="submitMessageButton" type="submit" value="Submit">
+            </div>
+          </form>
+      </div>
     </div>
-  </form>
-  <br />
-
-  <div id="message-container">Loading...</div>
-
+    
+    <div id="message-container">Loading...</div>
+  </div>
 </body>
 
 </html>

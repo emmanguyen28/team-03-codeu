@@ -82,3 +82,15 @@
   margin: auto; 
   padding-left: 80px;
 }
+
+textarea {
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+/* input {
+  width: 10%;
+  height: 100%;
+  float: right;
+} */
