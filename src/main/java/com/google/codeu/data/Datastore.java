@@ -170,7 +170,6 @@ public class Datastore {
 		Query query = new Query("Message").setFilter(new Query.FilterPredicate("tag", FilterOperator.EQUAL, tag)).addSort("timestamp", SortDirection.DESCENDING); 
 		
 		return getQueryMessages(query); 
-
 	}
 
 	/**
