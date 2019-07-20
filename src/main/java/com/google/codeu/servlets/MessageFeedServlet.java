@@ -41,9 +41,9 @@ public class MessageFeedServlet extends HttpServlet {
         List<Message> messages = datastore.getAllMessages(); 
 
 
-		if (!tag.equals("null") && tag.length() > 0) {
-            messages = datastore.getAllMessagesWithTag(tag.toLowerCase());
-        }
+		// if (!tag.equals("null") && tag.length() > 0) {
+        //     messages = datastore.getAllMessagesWithTag(tag.toLowerCase());
+        // }
 		// get a list of the user's messages using the Datastore API
 		Gson gson = new Gson(); 
         String json = gson.toJson(messages); 
