@@ -28,7 +28,7 @@ limitations under the License.
     <script src="./js/single-conversation-topic.js"></script>
 </head>
 
-<body onload="buildUI()">
+<body onload="buildUI(); addLoginOrLogoutLinkToNavigation()">
     <nav>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -55,7 +55,7 @@ limitations under the License.
 
                     <hr>
 
-                    <form id="single-conversation-topic-form" method="POST" enctype="multipart/form-data">
+                    <form id="single-conversation-topic-form" class="hidden" method="POST" enctype="multipart/form-data">
                         <div id="conversation-topic-input-message-div">
                             <textarea name="text"></textarea>
                             <button type="submit" value="submit">Submit</button>

@@ -7,6 +7,19 @@ const parameterConversationTopicTitle = urlParams.get("title");
 
 console.log(parameterConversationTopicId);
 
+function showMessageFormIfSignedIn() {
+  fetch("/login-status")
+    .then(response => {
+      return response.json();
+    })
+    .then(loginStatus => {
+      if (loginStatus.isLoggedIn) {
+        const form = document.getElementById('single-conversation-topic-form');
+        form.classList.remove('hidden');
+      }
+    });
+}
+
 function setConversationTopicTitle() {
   const url = "/conversation-topics";
   let title = "";
@@ -36,12 +49,20 @@ function setConversationTopicTitle() {
 function createHiddenInputElement() {
   const form = document.getElementById("single-conversation-topic-form");
   console.log(form);
-  const input = document.createElement("input");
-  input.classList.add("hidden");
-  input.name = "conversationTopicId";
-  input.value = parameterConversationTopicId;
-  console.log(input.value);
-  form.appendChild(input);
+  const conversationTopicIdInput = document.createElement("input");
+  conversationTopicIdInput.classList.add("hidden");
+  conversationTopicIdInput.name = "conversationTopicId";
+  conversationTopicIdInput.value = parameterConversationTopicId;
+  console.log(conversationTopicIdInput.value);
+  form.appendChild(conversationTopicIdInput);
+
+  const conversationTopicTitleInput = document.createElement("input");
+  conversationTopicTitleInput.classList.add("hidden");
+  conversationTopicTitleInput.name = "conversationTopicTitle";
+  conversationTopicTitleInput.value = parameterConversationTopicTitle;
+  console.log(conversationTopicTitleInput.value);
+  form.appendChild(conversationTopicTitleInput);
+
   console.log(form);
 }
 
@@ -98,7 +119,7 @@ function buildMessageDiv(message) {
   profile_div.classList.add("profile-div");
   // add fontawesome pic here
   profile_div.appendChild(document.createTextNode(message.user));
-  
+
   const profile_div_container = document.createElement("div");
   profile_div_container.classList.add("profile-div-container");
   profile_div_container.appendChild(profile_div);
@@ -146,6 +167,7 @@ function convertImageAddressToAnchorTag(text) {
 }
 
 function buildUI() {
+  showMessageFormIfSignedIn();
   setConversationTopicTitle();
   createHiddenInputElement();
   fetchBlobstoreUrlAndShowForm();
