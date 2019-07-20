@@ -38,7 +38,7 @@ public class MessageFeedServlet extends HttpServlet {
 		// first, check if a tag is provided
         String tag = request.getParameter("tag");
         
-        List<Message> messages = datastore.getAllMessages(); 
+        List<Message> messages = datastore.getAllFeedMessages(); 
 
 
 		// if (!tag.equals("null") && tag.length() > 0) {
