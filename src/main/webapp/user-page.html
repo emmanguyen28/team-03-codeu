@@ -28,30 +28,11 @@ limitations under the License.
   <script src="./js/navigation-loader.js"></script>
 </head>
 
-<<<<<<< HEAD
-<body class="general" onload="buildUI(); addLoginOrLogoutLinkToNavigation();">
-
-  <nav>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">SportsPal</a>
-        </div>
-        <ul class="nav navbar-nav" id="navigation">
-          <li><a href="/">Home</a></li>
-          <li><a href="/aboutus.html">About Our Team</a></li>
-          <li><a href="/community.html">Community</a></li>
-          <li><a href="/feed.html">Feed</a></li>
-          <li><a href="/stats.html">Stats</a></li>
-          <li><a href="/conversation-topics.html">Conversation Topics</a></li>
-        </ul>
-=======
 <body onload="buildUI();" onload="addLoginOrLogoutLinkToNavigation();">
   <nav class="navbar navbar-light" style="background-color: #00a8eb;" id="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" style="color: black;" href="/">SportsPal</a>
->>>>>>> 63236ec5adfc79697899f941509ed96f7a89b005
       </div>
       <ul class="nav navbar-nav" id="navigation">
         <li><a href="/aboutus.html">About Our Team</a></li>
@@ -127,20 +108,19 @@ limitations under the License.
     
 
   <h1 >My Messages</h1>
+
+
   <form class="form-group" id="message-form" method="POST" class="hidden" enctype="multipart/form-data">
     <p >Enter a new message:</p>
     <br />
     <textarea name="text"  class="form-control" id="message-input"></textarea>
-   
-  
+      
   </form>
-  <br>
-  
-  <div class="form-group">
-      <p> Tag:  </p>
-      <input type='text' class="form-control" name="tag">
-  </div>
+  <p> Tag:  </p>
+  <input type='text' class="form-control" name="tag">
+          
 
+  
   <div id="message-container">Loading...</div>
 
 </body>
