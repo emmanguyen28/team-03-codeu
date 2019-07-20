@@ -124,10 +124,11 @@ public class Datastore {
 				String text = (String) entity.getProperty("text");
 				long timestamp = (long) entity.getProperty("timestamp");
 				String imageUrl = (String) entity.getProperty("imageUrl");
+				String tag = (String) entity.getProperty("tag");
 				String conversationTopicId = (String) entity.getProperty("conversationTopicId");
 				System.out.println(conversationTopicId);
 
-				Message message = new Message(id, user, text, timestamp, imageUrl, conversationTopicId);
+				Message message = new Message(id, user, text, timestamp, imageUrl, tag, conversationTopicId);
 				messages.add(message);
 			} catch (Exception e) {
 				System.err.println(String.format("Error reading message: [%s]", entity.toString()));
