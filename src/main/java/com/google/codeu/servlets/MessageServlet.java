@@ -97,6 +97,8 @@ public class MessageServlet extends HttpServlet {
 
 		datastore.storeMessage(message);
 
+		String conversationTopicId = message.getConversationTopicId(); 
+
 		// if message has conversation topic id, then just reload page
 		if (conversationTopicId != null) {
 			response.sendRedirect("/single-conversation-topic.html?id=" + conversationTopicId);
