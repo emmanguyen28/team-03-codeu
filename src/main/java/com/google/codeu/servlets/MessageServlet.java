@@ -85,21 +85,28 @@ public class MessageServlet extends HttpServlet {
 			response.sendRedirect("/index.html");
 			return;
 		}
-    	String user = userService.getCurrentUser().getEmail();
+		String user = userService.getCurrentUser().getEmail();
 		String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
 		// Get the URL of the image the user uploaded on the Blobstore
 		String imageUrls = getUploadedFileUrl(request, "image");
 
 		String conversationTopicId = request.getParameter("conversationTopicId");
+		String conversationTopicTitle = request.getParameter("conversationTopicTitle");
 		System.out.println("inside messageServlet " + request.getParameter("conversationTopicId"));
-    		
+
+		// String tag = Jsoup.clean(request.getParameter("tag"), Whitelist.none());
+		System.out.println(imageUrls);
+
 		// if imageUrls is null, it's saved like that. Will be taken care of on the
+		// front end
 		Message message = new Message(user, text, imageUrls, conversationTopicId);
+
 		datastore.storeMessage(message);
 
 		// if message has conversation topic id, then just reload page
 		if (conversationTopicId != null) {
-			response.sendRedirect("/single-conversation-topic.html?id=" + conversationTopicId + "&title=" + conversationTopicTitle);
+			response.sendRedirect(
+					"/single-conversation-topic.html?id=" + conversationTopicId + "&title=" + conversationTopicTitle);
 		} else {
 			response.sendRedirect("/user-page.html?user=" + user);
 		}
@@ -122,7 +129,7 @@ public class MessageServlet extends HttpServlet {
 		// User submitted form without selecting a file, so we can't get a URL.
 		// (DEVSERVER)
 		// if (blobKeys == null || blobKeys.isEmpty()) {
-		// 	return null;
+		// return null;
 		// }
 
 		// Our form only contains a single file input, so get the first index.
