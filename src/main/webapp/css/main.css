@@ -110,3 +110,7 @@ body {
 .navbar .navbar-nav li a {
   color: white;
 }
+
+td {
+  padding: 5px 25px;
+}

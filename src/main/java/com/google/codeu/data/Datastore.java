@@ -48,9 +48,7 @@ public class Datastore {
 		messageEntity.setProperty("text", message.getText());
 		messageEntity.setProperty("timestamp", message.getTimestamp());
 		messageEntity.setProperty("imageUrl", message.getImageUrl());
-		messageEntity.setProperty("tag", message.getTag());
-		messageEntity.setProperty("conversationTopic", message.getConversationTopicId());
-
+		messageEntity.setProperty("conversationTopicId", message.getConversationTopicId());
 
 		datastore.put(messageEntity);
 	}
@@ -126,11 +124,10 @@ public class Datastore {
 				String text = (String) entity.getProperty("text");
 				long timestamp = (long) entity.getProperty("timestamp");
 				String imageUrl = (String) entity.getProperty("imageUrl");
-				String tag = (String) entity.getProperty("tag");
 				String conversationTopicId = (String) entity.getProperty("conversationTopicId");
+				System.out.println(conversationTopicId);
 
-				Message message = new Message(id, user, text, timestamp, imageUrl, tag, conversationTopicId);
-
+				Message message = new Message(id, user, text, timestamp, imageUrl, conversationTopicId);
 				messages.add(message);
 			} catch (Exception e) {
 				System.err.println(String.format("Error reading message: [%s]", entity.toString()));
@@ -161,7 +158,6 @@ public class Datastore {
 	}
 
 	/**
-
 	 * Get all messages with specified tag
 	 * @param tag
 	 * @return a list of messages with specified tag
@@ -173,8 +169,7 @@ public class Datastore {
 	}
 
 	/**
-	 * Get all messages from all users
-
+	 * Get all messages from all users (including messages in chatrooms)
 	 */
 	public List<Message> getAllMessages() {
 		Query query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);
@@ -192,11 +187,23 @@ public class Datastore {
 		return getQueryMessages(query);
 	}
 
+	/**
+	 * Get the messages for the conversation topic matching the id passed as parameter
+	 */
 	public List<Message> getConversationTopicMessages(String id) {
 		Filter conversationTopicFilter = new Query.FilterPredicate("conversationTopicId", FilterOperator.EQUAL, id);
 		Query query = new Query("Message").setFilter(conversationTopicFilter).addSort("timestamp",
 				SortDirection.ASCENDING);
 		return getQueryMessages(query);
+	}
+
+	/**
+	 * Get the conversation topic object matching the id passed as parameter
+	 */
+	public ConversationTopic getConversationTopic(String id) {
+		Filter idFilter = new Query.FilterPredicate("id", FilterOperator.EQUAL, id);
+		Query query = new Query("ConversationTopic").setFilter(idFilter);
+		return getQueryConversationTopics(query).get(0);
 	}
 
 	/**
