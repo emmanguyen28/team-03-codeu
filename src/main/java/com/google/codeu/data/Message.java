@@ -34,19 +34,23 @@ public class Message {
    * random ID and uses the current system time for the creation time.
    */
   public Message(String user, String text) {
+<<<<<<< HEAD
     this(UUID.randomUUID(), user, text, System.currentTimeMillis(), null, ""); // imageUrl is null if user didn't upload an image
   }
 
   public Message(UUID id, String user, String text, long timestamp, String imageUrl, String tag) {
     this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, tag, null); // imageUrl is null if user didn't upload an image
+=======
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), null, "", null); // imageUrl is null if user didn't upload an image
+>>>>>>> 63236ec5adfc79697899f941509ed96f7a89b005
   }
   
   public Message(String user, String text, String imageUrl) {
 	  this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, "", null);
   }
 
-  public Message(String user, String text, String imageUrl, String conversationTopicId) {
-    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl,"", conversationTopicId);
+  public Message(String user, String text, String imageUrl, String tag, String conversationTopicId) {
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), imageUrl, tag, conversationTopicId);
   }
   
 

@@ -98,3 +98,19 @@ body {
 #message-container ul li {
   word-break: break-all; 
 }
+
+.badge-info {
+  background-color: #3a87ad;
+}
+
+.navbar .navbar-nav li a:hover, .navbar .navbar-nav li a:focus {
+  background-color: #03adfc;
+}
+
+.navbar .navbar-nav li a {
+  color: white;
+}
+
+td {
+  padding: 5px 25px;
+}

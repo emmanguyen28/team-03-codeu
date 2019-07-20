@@ -24,10 +24,11 @@ limitations under the License.
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="/js/user-page-loader.js"></script>
-  <script src="/js/navigation-loader.js"></script>
+  <script src="./js/user-page-loader.js"></script>
+  <script src="./js/navigation-loader.js"></script>
 </head>
 
+<<<<<<< HEAD
 <body class="general" onload="buildUI(); addLoginOrLogoutLinkToNavigation();">
 
   <nav>
@@ -44,8 +45,23 @@ limitations under the License.
           <li><a href="/stats.html">Stats</a></li>
           <li><a href="/conversation-topics.html">Conversation Topics</a></li>
         </ul>
+=======
+<body onload="buildUI();" onload="addLoginOrLogoutLinkToNavigation();">
+  <nav class="navbar navbar-light" style="background-color: #00a8eb;" id="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" style="color: black;" href="/">SportsPal</a>
+>>>>>>> 63236ec5adfc79697899f941509ed96f7a89b005
       </div>
-    </nav>
+      <ul class="nav navbar-nav" id="navigation">
+        <li><a href="/aboutus.html">About Our Team</a></li>
+        <li><a href="/community.html">Community</a></li>
+        <li><a href="/feed.html">Feed</a></li>
+        <li><a href="/stats.html">Stats</a></li>
+        <li><a href="/conversation-topics.html">Conversation Topics</a></li>
+      </ul>
+    </div>
+  </nav>
     
     <h1 id="page-title">My Profile Page</h1>
 

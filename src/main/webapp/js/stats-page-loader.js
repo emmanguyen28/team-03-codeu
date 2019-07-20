@@ -7,16 +7,20 @@
         const statsContainer = document.getElementById('stats-container');
         statsContainer.innerHTML = '';
 
-        const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
-        const avgMsgLengthElement = buildStatElement('Average message length: ' + stats.averageMessageLength);
+        const messageCountElement = buildStatElement('Message count: ', stats.messageCount);
+        const avgMsgLengthElement = buildStatElement('Average message length: ', + stats.averageMessageLength);
         statsContainer.appendChild(messageCountElement);
         statsContainer.appendChild(avgMsgLengthElement);
       });
     }
 
-    function buildStatElement(statString){
-     const statElement = document.createElement('p');
-     statElement.appendChild(document.createTextNode(statString));
+    function buildStatElement(statString, statBadge){
+     const statElement = document.createElement('h3');
+     statElement.appendChild(document.createTextNode(statString))
+     const statSpan = document.createElement('span'); 
+     statSpan.setAttribute("class", "badge badge-info");
+     statSpan.appendChild(document.createTextNode(statBadge));
+     statElement.appendChild(statSpan);
      return statElement;
     }
 
