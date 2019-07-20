@@ -75,6 +75,10 @@ public class Message {
 	  return imageUrl;
   }
 
+  public String getTag() {
+    return tag; 
+  }
+
   public String getConversationTopicId() {
     return conversationTopicId;
   }

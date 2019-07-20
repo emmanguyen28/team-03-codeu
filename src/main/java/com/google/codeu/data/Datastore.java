@@ -49,6 +49,7 @@ public class Datastore {
 		messageEntity.setProperty("timestamp", message.getTimestamp());
 		messageEntity.setProperty("imageUrl", message.getImageUrl());
 		messageEntity.setProperty("conversationTopicId", message.getConversationTopicId());
+		messageEntity.setProperty("tag", message.getTag()); 
 
 		datastore.put(messageEntity);
 	}

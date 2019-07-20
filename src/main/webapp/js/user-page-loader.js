@@ -123,6 +123,7 @@ function buildMessageDiv(message) {
 
 	// return messageDiv;
 
+	console.log(message); 
 	const wrapper = document.createElement('div');
 	wrapper.classList.add('card');
 	wrapper.style = 'width: 70rem';
