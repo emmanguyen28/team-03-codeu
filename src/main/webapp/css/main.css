@@ -35,6 +35,7 @@ ul {
 
 body {
   background-color: aliceblue; 
+  background-image: url("/support/background.jpg");
 }
 
 .panel {
